@@ -1,0 +1,287 @@
+<p-growl></p-growl>
+<p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425" appendTo="body"></p-confirmDialog>
+
+<!-- <p> {{ ccForm.value | json }} </p> -->
+<!-- <p> {{ selectedId }} </p> -->
+<!-- contaCorrente = {{ contaCorrente | json}} -->
+<!-- <p></p> -->
+<!-- ccForm = {{ ccForm.value | json }} -->
+
+<form [formGroup]="ccForm" (ngSubmit)="save()" novalidate>
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="card card-w-title">
+        <p-toolbar>
+          <div class="ui-toolbar-group-left">
+            <button pButton type="submit" label="Salvar" icon="ui-icon-save" class="ui-button-success" [disabled]="ccForm.pristine || !ccForm.valid"></button>
+          </div>
+          <div class="ui-toolbar-group-right">
+            <button pButton type="button" label="Apagar" icon="ui-icon-delete" class="ui-button-danger" (click)="confirmDelete()" [disabled]="(!contaCorrente.id)"></button>
+          </div>
+        </p-toolbar>
+        <p></p>
+
+        <div class="ui-fluid">
+          <div class="ui-g">
+            <div class="ui-g-2 ui-sm-12">
+              <p-radioButton formControlName="ativa" [value]="true" label="Ativa" name="opt1"></p-radioButton>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+              <p-radioButton formControlName="ativa" [value]="false" label="Inativa" name="opt1"></p-radioButton>
+            </div>
+          </div>
+          <p></p>
+
+          <div class="ui-g form-group">
+            <div class="ui-g-4 ui-sm-12">
+              <span class="md-inputfield">
+                <input pInputText type="text" formControlName="apelido" />
+                <label>Apelido</label>
+                <div *ngIf="ccForm.get('apelido').invalid && (ccForm.get('apelido').dirty || ccForm.get('apelido').touched)" class="ui-message ui-messages-error ui-corner-all">
+                  Campo inválido
+                </div>
+              </span>
+            </div>
+
+            <div class="ui-g-4 ui-sm-12">
+              <span class="md-inputfield">
+                <input pInputText type="text" formControlName="titular" id='titular' />
+                <label>Titular</label>
+                <div *ngIf="ccForm.get('titular').invalid && (ccForm.get('titular').dirty || ccForm.get('titular').touched)" class="ui-message ui-messages-error ui-corner-all">
+                  Campo inválido
+                </div>
+              </span>
+            </div>
+          </div>
+
+          <div class="ui-g form-group">
+            <div class="ui-g-2 ui-sm-12">
+              <p-dropdown formControlName="bancoId" [options]="bancos" [autoWidth]="false"></p-dropdown>
+            </div>
+            <div class="ui-g-4 ui-sm-12">
+              <span class="md-inputfield">
+                <input pInputText type="text" formControlName="numeroAgencia" />
+                <label>Número da agência</label>
+                <div *ngIf="ccForm.get('numeroAgencia').invalid && (ccForm.get('numeroAgencia').dirty || ccForm.get('numeroAgencia').touched)" class="ui-message ui-messages-error ui-corner-all">
+                  Campo inválido
+                </div>
+              </span>
+            </div>
+            <div class="ui-g-4 ui-sm-12">
+              <span class="md-inputfield">
+                <input pInputText type="text" formControlName="numeroConta" />
+                <label>Número da conta</label>
+                <div *ngIf="ccForm.get('numeroConta').invalid && (ccForm.get('numeroConta').dirty || ccForm.get('numeroConta').touched)" class="ui-message ui-messages-error ui-corner-all">
+                  Campo inválido
+                </div>
+              </span>
+            </div>
+          </div>
+
+          <div class="ui-g form-group">
+            <div class="ui-g-4 ui-sm-12">
+              <span class="md-inputfield">
+                <input pInputText type="text" formControlName="contato1" />
+                <label>Contato 1</label>
+              </span>
+            </div>
+            <div class="ui-g-4 ui-sm-12">
+              <span class="md-inputfield">
+                <input pInputText type="text" formControlName="contato2" />
+                <label>Contato 2</label>
+              </span>
+            </div>
+          </div>
+
+          <div class="ui-g form-group">
+            <div class="ui-g-4 ui-sm-12">
+              <span class="md-inputfield">
+                <input pInputText type="text" formControlName="telefone1" />
+                <label>Telefone 1</label>
+              </span>
+            </div>
+            <div class="ui-g-4 ui-sm-12">
+              <span class="md-inputfield">
+                <input pInputText type="text" formControlName="telefone2" />
+                <label>Telefone 2</label>
+              </span>
+            </div>
+          </div>
+          <p></p>
+
+          <p-fieldset legend="Dados para emissão de boleto" [toggleable]="true" [collapsed]="true">
+            <p></p>
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_CodigoCedente" />
+                  <label>Código do cedente</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_NomeCedente" />
+                  <label>Nome do cedente</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_AgenciaCedente" />
+                  <label>Número da agência do cedente</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_DigitoAgenciaCedente" />
+                  <label>Dígito da agência do cedente</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_ContaCedente" />
+                  <label>Número da conta do cedente</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_DigitoContaCedente" />
+                  <label>Dígito da conta do cedente</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_EspecieDocumento" />
+                  <label>Espécie do documento</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_NumeroBanco" />
+                  <label>Número do banco</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_Carteira" />
+                  <label>Carteira</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_CNPJCedente" />
+                  <label>CNPJ do cedente</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_PorcetagemMultaAposAtraso" />
+                  <label>Juros após atraso (%)</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_PorcentagemJurosAposVencimento" />
+                  <label>Juros após vencimento (%)</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_CarteiraRemessa" />
+                  <label>Carteira remessa</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_CodigoTransmissao240" />
+                  <label>Código de transmissão 240</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_Complemento" />
+                  <label>Complemento</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="boleto_NumeroRemessa" />
+                  <label>Número da remessa</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input pInputText type="text" formControlName="prefixoArquivoRemessa" />
+                  <label>Prefixo do arquivo remessa</label>
+                </span>
+              </div>
+            </div>
+          </p-fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

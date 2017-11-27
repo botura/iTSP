@@ -1,0 +1,297 @@
+<p-growl></p-growl>
+
+<p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425" appendTo="body"></p-confirmDialog>
+
+<form (ngSubmit)="save()" #ccform="ngForm">
+  <div class="ui-g">
+    <div class="ui-g-12">
+      <div class="card card-w-title">
+        <p-toolbar>
+          <div class="ui-toolbar-group-left">
+            <button pButton type="submit" label="Salvar" icon="ui-icon-save" class="ui-button-success"  [disabled]="!ccform.form.valid"></button>
+          </div>
+          <div class="ui-toolbar-group-right">
+            <button pButton type="button" label="Apagar" icon="ui-icon-delete" class="ui-button-danger" (click)="confirmDelete()" [disabled]="(cc.id === 0)"></button>
+          </div>
+        </p-toolbar>
+        <p></p>
+        <!-- <p> {{ cc | json }} </p> -->
+        <!-- <p> {{ id }} </p> -->
+        <!-- <p> {{ _id }} </p> -->
+
+        <div class="ui-fluid">
+          <div class="ui-g">
+            <div class="ui-g-2 ui-sm-12">
+              <p-radioButton id="ativa" name="ativa" [value]="true" label="Ativa" [(ngModel)]="cc.ativa" #ativa="ngModel"></p-radioButton>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+              <p-radioButton id="inativa" name="ativa" [value]="false" label="Inativa" [(ngModel)]="cc.ativa"></p-radioButton>
+            </div>
+          </div>
+          <p></p>
+
+          <div class="ui-g form-group">
+            <div class="ui-g-4 ui-sm-12">
+              <span class="md-inputfield">
+                <input id="apelido" name="apelido" type="text" pInputText required [(ngModel)]="cc.apelido" #apelido="ngModel" />
+                <label>Apelido</label>
+                <div class="ui-message ui-messages-error ui-corner-all" *ngIf="apelido.touched && !apelido.valid">
+                  Esse campo não pode ficar em branco
+                </div>
+              </span>
+            </div>
+            <div class="ui-g-4 ui-sm-12">
+              <span class="md-inputfield">
+                <input id="titular" name="titular" type="text" pInputText required [(ngModel)]="cc.titular" #titular="ngModel" />
+                <label>Titular</label>
+                <div class="ui-message ui-messages-error ui-corner-all" *ngIf="titular.touched && !titular.valid">
+                  Esse campo não pode ficar em branco
+                </div>
+              </span>
+            </div>
+          </div>
+          <p></p>
+
+          <div class="ui-g form-group">
+            <div class="ui-g-2 ui-sm-12">
+              <p-dropdown id="banco" name="banco" [options]="bancos" required [(ngModel)]="cc.bancoId" [autoWidth]="false"></p-dropdown>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+              <span class="md-inputfield">
+                <input id="nomeAgencia" name="nomeAgencia" type="text" pInputText [(ngModel)]="cc.nomeAgencia" />
+                <label>Nome da agência</label>
+              </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+              <span class="md-inputfield">
+                <input id="numeroAgencia" name="numeroAgencia" type="text" pInputText required [(ngModel)]="cc.numeroAgencia" #numeroAgencia="ngModel" />
+                <label>Número da agência</label>
+                <div class="ui-message ui-messages-error ui-corner-all" *ngIf="numeroAgencia.touched && !numeroAgencia.valid">
+                  Esse campo não pode ficar em branco
+                </div>
+              </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+              <span class="md-inputfield">
+                <input id="numeroConta" name="numeroConta" type="text" pInputText required [(ngModel)]="cc.numeroConta" #numeroConta="ngModel" />
+                <label>Número da conta</label>
+                <div class="ui-message ui-messages-error ui-corner-all" *ngIf="numeroConta.touched && !numeroConta.valid">
+                  Esse campo não pode ficar em branco
+                </div>
+              </span>
+            </div>
+
+          </div>
+          <p></p>
+
+          <div class="ui-g form-group">
+            <div class="ui-g-2 ui-sm-12">
+              <span class="md-inputfield">
+                <input id="contato1" name="contato1" type="text" pInputText [(ngModel)]="cc.contato1" />
+                <label>Contato 1</label>
+              </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+              <span class="md-inputfield">
+                <input id="contato2" name="contato2" type="text" pInputText [(ngModel)]="cc.contato2" />
+                <label>Contato 2</label>
+              </span>
+            </div>
+          </div>
+          <p></p>
+
+          <div class="ui-g form-group">
+            <div class="ui-g-2 ui-sm-12">
+              <span class="md-inputfield">
+                <input id="telefone1" name="telefone1" type="text" pInputText [(ngModel)]="cc.telefone1" />
+                <label>Telefone 1</label>
+              </span>
+            </div>
+            <div class="ui-g-2 ui-sm-12">
+              <span class="md-inputfield">
+                <input id="telefone2" name="telefone2" type="text" pInputText [(ngModel)]="cc.telefone2" />
+                <label>Telefone 2</label>
+              </span>
+            </div>
+
+          </div>
+          <p></p>
+
+          <p-fieldset legend="Dados para emissão de boleto" [toggleable]="true" [collapsed]="false">
+            <p></p>
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_CodigoCedente" name="boleto_CodigoCedente" type="text" pInputText [(ngModel)]="cc.boleto_CodigoCedente" />
+                  <label>Código do cedente</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_NomeCedente" name="boleto_NomeCedente" type="text" pInputText [(ngModel)]="cc.boleto_NomeCedente">
+                  <label>Nome do cedente</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_AgenciaCedente" name="boleto_AgenciaCedente" type="text" pInputText [(ngModel)]="cc.boleto_AgenciaCedente">
+                  <label>Número da agência do cedente</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_DigitoAgenciaCedente" name="boleto_DigitoAgenciaCedente" type="text" pInputText [(ngModel)]="cc.boleto_DigitoAgenciaCedente">
+                  <label>Dígito da agência do cedente</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_ContaCedente" name="boleto_ContaCedente" type="text" pInputText [(ngModel)]="cc.boleto_ContaCedente">
+                  <label>Número da conta do cedente</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_DigitoContaCedente" name="boleto_DigitoContaCedente" type="text" pInputText [(ngModel)]="cc.boleto_DigitoContaCedente">
+                  <label>Dígito da conta do cedente</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_EspecieDocumento" name="boleto_EspecieDocumento" type="text" pInputText [(ngModel)]="cc.boleto_EspecieDocumento">
+                  <label>Espécie do documento</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_NumeroBanco" name="boleto_NumeroBanco" type="text" pInputText [(ngModel)]="cc.boleto_NumeroBanco">
+                  <label>Número do banco</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_Carteira" name="boleto_Carteira" type="text" pInputText [(ngModel)]="cc.boleto_Carteira">
+                  <label>Carteira</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_CNPJCedente" name="boleto_CNPJCedente" type="text" pInputText [(ngModel)]="cc.boleto_CNPJCedente">
+                  <label>CNPJ do cedente</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_PorcetagemMultaAposAtraso" name="boleto_PorcetagemMultaAposAtraso" type="text" pInputText [(ngModel)]="cc.boleto_PorcetagemMultaAposAtraso">
+                  <label>Juros após atraso (%)</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_PorcentagemJurosAposVencimento" name="boleto_PorcentagemJurosAposVencimento" type="text" pInputText [(ngModel)]="cc.boleto_PorcentagemJurosAposVencimento">
+                  <label>Juros após vencimento (%)</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_CarteiraRemessa" name="boleto_CarteiraRemessa" type="text" pInputText [(ngModel)]="cc.boleto_CarteiraRemessa">
+                  <label>Carteira remessa</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_CodigoTransmissao240" name="boleto_CodigoTransmissao240" type="text" pInputText [(ngModel)]="cc.boleto_CodigoTransmissao240">
+                  <label>Código de transmissão 240</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_Complemento" name="boleto_Complemento" type="text" pInputText [(ngModel)]="cc.boleto_Complemento">
+                  <label>Complemento</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="boleto_NumeroRemessa" name="boleto_NumeroRemessa" type="text" pInputText [(ngModel)]="cc.boleto_NumeroRemessa">
+                  <label>Número da remessa</label>
+                </span>
+              </div>
+            </div>
+            <p></p>
+
+            <div class="ui-g form-group">
+              <div class="ui-g-12">
+                <span class="md-inputfield">
+                  <input id="prefixoArquivoRemessa" name="prefixoArquivoRemessa" type="text" pInputText [(ngModel)]="cc.prefixoArquivoRemessa">
+                  <label>Prefixo do arquivo remessa</label>
+                </span>
+              </div>
+            </div>
+          </p-fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+

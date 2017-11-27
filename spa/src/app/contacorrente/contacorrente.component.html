@@ -1,0 +1,44 @@
+<p-growl></p-growl>
+
+<div *ngIf="selectedContaCorrente">
+  <p-dialog header='Conta corrente' [visible]="true" modal="modal" width="1200" (onHide)="selectedContaCorrente = null">
+    <app-contacorrente-form-reactive [contaCorrente]="selectedContaCorrente" (onDeleted)="onDeleted()" (onSaved)="onSaved()"></app-contacorrente-form-reactive>
+  </p-dialog>
+</div>
+
+<div class="ui-g">
+  <div class="ui-g-12">
+    <div class="card">
+      <h1>Conta corrente</h1>
+      <!-- {{ selectedRow | json }} -->
+      <!-- {{ selectedContaCorrente | json }} -->
+
+      <p-dataTable #dt [value]="queryResult" rowHover="true" selectionMode="single" [(selection)]="selectedRow" (onRowDblclick)="edit()"
+        exportFilename="Conta corrente" styleClass="tdLessPadding">
+        <p-header>
+          <div class="ui-helper-clearfix">
+            <button type="button" pButton icon="ui-icon-refresh" label="Reset filtro" (click)="resetFiltro(dt)" style="float:left"></button>
+            <button type="button" pButton icon="ui-icon-add" label="Nova" (click)="add()" style="float:left"></button>
+            <button type="button" pButton icon="ui-icon-file-download" label="Download CSV" (click)="dt.exportCSV()" style="float:right"></button>
+          </div>
+        </p-header>
+        <p-column field="apelido" header="Apelido" [sortable]="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'400px','text-align':'left'}"></p-column>
+        <p-column field="banco" header="Banco" [sortable]="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'100px','text-align':'center'}"></p-column>
+        <p-column field="numeroAgencia" header="Agência" [sortable]="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'90px','text-align':'center'}"></p-column>
+        <p-column field="numeroConta" header="Conta" [sortable]="true" [filter]="true" filterMatchMode="contains" [style]="{'width':'90px','text-align':'center'}"></p-column>
+        <p-column field="ativa" header="Ativa" [sortable]="true" [filter]="true" filterMatchMode="equals" [style]="{'width':'80px','text-align':'center'}">
+          <ng-template pTemplate="filter" let-col>
+            <p-dropdown [options]="simnao" [style]="{'width':'100%'}" appendTo="body" (onChange)="dt.filter($event.value,col.field,col.filterMatchMode)"
+              styleClass="ui-column-filter"></p-dropdown>
+          </ng-template>
+          <ng-template let-row="rowData" let-index="rowIndex" let-col pTemplate="body">
+            <p-checkbox [(ngModel)]="row[col.field]" binary="true" [disabled]="true"></p-checkbox>
+          </ng-template>
+        </p-column>
+        <p-footer>
+          <div style="text-align:left">{{ dt.dataToRender.length }} contas encontradas</div>
+        </p-footer>
+      </p-dataTable>
+    </div>
+  </div>
+</div>
