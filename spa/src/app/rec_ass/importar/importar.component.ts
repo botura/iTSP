@@ -1,5 +1,5 @@
 import { Message } from 'primeng/primeng';
-import { BreadcrumbService } from '../breadcrumb.service';
+import { BreadcrumbService } from '../../breadcrumb.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({

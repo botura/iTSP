@@ -1,7 +1,9 @@
+using System.Collections.Generic;
 using System;
 using System.Globalization;
 using System.IO;
 using System.Threading.Tasks;
+using api.Controllers.Resources;
 using api.Core;
 using api.Core.Models;
 using AutoMapper;
@@ -11,16 +13,16 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace api.Controllers
 {
-    [Route("/api/upload")]
-    public class ImportarController : Controller
+    [Route("/api/rec_ass")]
+    public class Rec_assController : Controller
     {
         private readonly int MAX_BYTES = 100 * 1024 * 1024;
         private readonly IMapper mapper;
-        private readonly IImportarRec_assRepository repository;
+        private readonly IRec_assRepository repository;
         private readonly IUnitOfWork unitOfWork;
         private readonly IHostingEnvironment host;
 
-        public ImportarController(IHostingEnvironment host, IMapper mapper, IImportarRec_assRepository repository, IUnitOfWork unitOfWork)
+        public Rec_assController(IHostingEnvironment host, IMapper mapper, IRec_assRepository repository, IUnitOfWork unitOfWork)
         {
             this.mapper = mapper;
             this.repository = repository;
@@ -28,7 +30,7 @@ namespace api.Controllers
             this.host = host;
         }
 
-        [HttpPost("rec_ass")]
+        [HttpPost("upload")]
         public async Task<IActionResult> UploadRec_Ass(IFormFile file)
         {
             if (file == null) return BadRequest("Nenhum arquivo");
@@ -57,13 +59,12 @@ namespace api.Controllers
             DateTime start = DateTime.Now;
             DateTime end;
             Console.WriteLine("");
-            Console.WriteLine(AllLines[0]);
-            Console.WriteLine("");
+            Console.WriteLine("/api/rec_ass/upload");
             Console.WriteLine("Started at: " + start.ToLongTimeString());
 
             for (int i = 1; i < AllLines.Length; i++)
             {
-                repository.Add(ProcessaLinha(AllLines[i], i, file.FileName));
+                repository.Add(ProcessaLinhaRec_ass(AllLines[i], i, file.FileName));
                 // Console.WriteLine(i);
             }
 
@@ -78,8 +79,7 @@ namespace api.Controllers
             return Ok("Linhas processadas");
         }
 
-
-        private RelatorioRec_ass ProcessaLinha(string linha, int numeroLinha, string nomeArquivo)
+        private RelatorioRec_ass ProcessaLinhaRec_ass(string linha, int numeroLinha, string nomeArquivo)
         {
             var rec_ass = new RelatorioRec_ass();
             decimal val;
@@ -128,6 +128,32 @@ namespace api.Controllers
             rec_ass.nomeArquivo = nomeArquivo;
             return rec_ass;
         }
+
+        // Grid
+        [HttpGet("grid")]
+        public async Task<IEnumerable<Rec_assGridResource>> GetRec_assGrid()
+        {
+            DateTime start = DateTime.Now;
+            DateTime end;
+            Console.WriteLine("");
+            Console.WriteLine("/api/rec_ass/grid");
+            Console.WriteLine("Started at: " + start.ToLongTimeString());
+
+            var list = await repository.GetRec_assGrid();
+
+            Console.WriteLine("Mapping...");
+            // var result = mapper.Map<IEnumerable<RelatorioRec_ass>, IEnumerable<Rec_assGridResource>>(list);
+
+            // end = DateTime.Now;
+            // Console.WriteLine("Finished at: " + end.ToLongTimeString());
+            // Console.WriteLine("Time: " + (end - start));
+            // Console.WriteLine();
+
+            // return result;
+
+            return mapper.Map<IEnumerable<RelatorioRec_ass>, IEnumerable<Rec_assGridResource>>(list);
+        }
+
     }
 
 }

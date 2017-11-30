@@ -1,3 +1,4 @@
+import { RecAssService } from './../services/rec_ass.service';
 import { AUTH_PROVIDERS, AuthConfig, AuthHttp } from 'angular2-jwt';
 import { AuthService } from '../services/auth/auth.service';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -112,7 +113,8 @@ import { AppErrorHandler } from './common/app.error-handler';
 import { ContacorrenteFormReactiveComponent } from './contacorrente/contacorrente-form-reactive.component';
 import { CallbackComponent } from './callback/callback.component';
 import { PessoaComponent } from './pessoa/pessoa.component';
-import { ImportarComponent } from './importar/importar.component';
+import { ImportarComponent } from './rec_ass/importar/importar.component';
+import { RecAssComponent } from './rec_ass/rec_ass.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -223,14 +225,15 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         ContacorrenteFormReactiveComponent,
         CallbackComponent,
         PessoaComponent,
-        ImportarComponent
+        ImportarComponent,
+        RecAssComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },
         MessageService,
         { provide: ErrorHandler, useClass: AppErrorHandler },
         CarService, CountryService, EventService, NodeService, BreadcrumbService,
-        ContaCorrenteService, BancoService,
+        ContaCorrenteService, BancoService, RecAssService,
         AuthService,
         {
             provide: AuthHttp,

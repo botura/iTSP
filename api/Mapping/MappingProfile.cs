@@ -37,6 +37,7 @@ namespace api.Mapping
             CreateMap<ContaCorrente, ContaCorrenteGridResource>()
                 .ForMember(ccr => ccr.Banco, opt => opt.MapFrom(cc => cc.Banco.Nome));
 
+            CreateMap<RelatorioRec_ass, Rec_assGridResource>();
 
 
             // API Resource --> Domain

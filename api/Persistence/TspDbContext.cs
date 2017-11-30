@@ -9,7 +9,7 @@ namespace api.Persistence
         public  DbSet<Pessoa> Pessoas { get; set; }
         public DbSet<Banco> Bancos { get; set; }
         public DbSet<ContaCorrente> ContaCorrentes { get; set; }
-        public DbSet<RelatorioRec_ass> RelatorioRec_ass { get; set; }
+        public DbSet<RelatorioRec_ass> Rec_ass { get; set; }
 
         public TspDbContext(DbContextOptions<TspDbContext> options)
           : base(options)

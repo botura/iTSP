@@ -32,7 +32,7 @@ namespace api
             services.AddScoped<IPessoaRepository, PessoaRepository>();
             services.AddScoped<IBancoRepository, BancoRepository>();
             services.AddScoped<IContaCorrenteRepository, ContaCorrenteRepository>();
-            services.AddScoped<IImportarRec_assRepository, ImportarRec_assRepository>();
+            services.AddScoped<IRec_assRepository, Rec_assRepository>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
             services.AddAutoMapper();

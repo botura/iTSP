@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace api.Core
 {
-    public interface IImportarRec_assRepository
+    public interface IRec_assRepository
     {
         // Task<ContaCorrente> GetContaCorrente(int id);
         void Add(RelatorioRec_ass relatorioRec_ass);
-        // Task<List<ContaCorrente>> GetContaCorrenteGrid();
+        Task<List<RelatorioRec_ass>> GetRec_assGrid();
         // void Remove(ContaCorrente contacorrente);
 
     }
