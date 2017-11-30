@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace api.Controllers
 {
     [Route("/api/contacorrente")]
-    [Authorize("read:messages")]
+    // [Authorize("read:messages")]
     public class ContaCorrentesController : Controller
     {
         private readonly IMapper mapper;

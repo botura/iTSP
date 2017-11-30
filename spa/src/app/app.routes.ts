@@ -1,3 +1,4 @@
+import { ImportarComponent } from './importar/importar.component';
 import { ContacorrenteFormReactiveComponent } from './contacorrente/contacorrente-form-reactive.component';
 import { ContacorrenteFormComponent } from './contacorrente/contacorrente-form.component';
 import { ContacorrenteComponent } from './contacorrente/contacorrente.component';
@@ -38,7 +39,8 @@ export const routes: Routes = [
     // {path: 'contacorrente/new', component: ContacorrenteFormComponent},
     // {path: 'contacorrente/detail/:id', component: ContacorrenteFormComponent}
     {path: 'teste/:id', component: ContacorrenteFormReactiveComponent},
-    {path: 'pessoa', component: PessoaComponent}
+    {path: 'pessoa', component: PessoaComponent},
+    {path: 'importar', component: ImportarComponent}
 ];
 
 export const AppRoutes: ModuleWithProviders = RouterModule.forRoot(routes);

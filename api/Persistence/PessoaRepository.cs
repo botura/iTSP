@@ -9,8 +9,8 @@ namespace api.Persistence
 {
     public class PessoaRepository : IPessoaRepository
     {
-        private readonly EdgeDbContext context;
-        public PessoaRepository(EdgeDbContext context)
+        private readonly TspDbContext context;
+        public PessoaRepository(TspDbContext context)
         {
             this.context = context;
         }

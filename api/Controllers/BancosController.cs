@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Authorization;
 namespace api.Controllers
 {
     [Route("/api/banco/")]
-    [Authorize("read:messages")]
+    // [Authorize("read:messages")]
     public class BancosController : Controller
     {
         private readonly IMapper mapper;

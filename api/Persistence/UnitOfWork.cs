@@ -5,9 +5,9 @@ namespace api.Persistence
 {
     public class UnitOfWork : IUnitOfWork
     {
-        private readonly EdgeDbContext context;
+        private readonly TspDbContext context;
 
-        public UnitOfWork(EdgeDbContext context)
+        public UnitOfWork(TspDbContext context)
         {
             this.context = context;
         }

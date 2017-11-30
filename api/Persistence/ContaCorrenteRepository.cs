@@ -9,8 +9,8 @@ namespace api.Persistence
 {
     public class ContaCorrenteRepository : IContaCorrenteRepository
     {
-        private readonly EdgeDbContext context;
-        public ContaCorrenteRepository(EdgeDbContext context)
+        private readonly TspDbContext context;
+        public ContaCorrenteRepository(TspDbContext context)
         {
             this.context = context;
         }

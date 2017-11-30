@@ -31,6 +31,7 @@ export class AppMenuComponent implements OnInit, AfterViewInit, OnDestroy {
             {
                 label: 'Cadastro',
                 items: [
+                    {label: 'Importar', icon: 'import_export', routerLink: ['/importar']},
                     {label: 'Pessoa', icon: 'face', routerLink: ['/pessoa']},
                     {label: 'Conta corrente', icon: 'monetization_on', routerLink: ['/contacorrente']},
                 ]

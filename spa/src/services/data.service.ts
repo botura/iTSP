@@ -15,38 +15,38 @@ export class DataService {
     }
 
     getGrid() {
-        // return this.http.get(this.url + '/grid')
-        return this.authHttp.get(this.url + '/grid')
+        return this.http.get(this.url + '/grid')
+        // return this.authHttp.get(this.url + '/grid')
             .map(res => res.json())
             .catch((this.handleError));
     }
 
     getDetail(id) {
-        return this.authHttp.get(this.url + '/detail/' + id)
+        return this.http.get(this.url + '/detail/' + id)
             .map(res => res.json())
             .catch((this.handleError));
     }
 
     getKVP() {
-        return this.authHttp.get(this.url + '/kvp')
+        return this.http.get(this.url + '/kvp')
             .map(res => res.json())
             .catch((this.handleError));
     }
 
     create(resource) {
-        return this.authHttp.post(this.url, resource)
+        return this.http.post(this.url, resource)
             .map(res => res.json())
             .catch((this.handleError));
     }
 
     update(resource) {
-        return this.authHttp.put(this.url + '/' + resource.id, resource)
+        return this.http.put(this.url + '/' + resource.id, resource)
             .map(res => res.json())
             .catch((this.handleError));
     }
 
     delete(id) {
-        return this.authHttp.delete(this.url + '/' + id)
+        return this.http.delete(this.url + '/' + id)
             .map(res => res.json())
             .catch((this.handleError));
     }

@@ -5,7 +5,7 @@ import {Component} from '@angular/core';
     template: `
         <div class="layout-footer clearfix">
             <a href="dashboard.xhtml">
-                <img alt="logo-colored" src="assets/layout/images/logo2.png" />
+                <img alt="logo-colored" src="assets/layout/images/logo.png" />
             </a>
             <span class="footer-text-right">
                 <span class="material-icons">copyright</span>

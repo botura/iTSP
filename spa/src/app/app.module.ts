@@ -1,4 +1,3 @@
-import { PessoaComponent } from './pessoa/pessoa.component';
 import { AUTH_PROVIDERS, AuthConfig, AuthHttp } from 'angular2-jwt';
 import { AuthService } from '../services/auth/auth.service';
 import { MessageService } from 'primeng/components/common/messageservice';
@@ -112,6 +111,8 @@ import { ContacorrenteFormComponent } from './contacorrente/contacorrente-form.c
 import { AppErrorHandler } from './common/app.error-handler';
 import { ContacorrenteFormReactiveComponent } from './contacorrente/contacorrente-form-reactive.component';
 import { CallbackComponent } from './callback/callback.component';
+import { PessoaComponent } from './pessoa/pessoa.component';
+import { ImportarComponent } from './importar/importar.component';
 
 export function authHttpServiceFactory(http: Http, options: RequestOptions) {
     return new AuthHttp(new AuthConfig({
@@ -221,7 +222,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         ContacorrenteFormComponent,
         ContacorrenteFormReactiveComponent,
         CallbackComponent,
-        PessoaComponent
+        PessoaComponent,
+        ImportarComponent
     ],
     providers: [
         { provide: LocationStrategy, useClass: HashLocationStrategy },

@@ -9,8 +9,8 @@ namespace api.Persistence
 {
     public class BancoRepository : IBancoRepository
     {
-        private readonly EdgeDbContext context;
-        public BancoRepository(EdgeDbContext context)
+        private readonly TspDbContext context;
+        public BancoRepository(TspDbContext context)
         {
             this.context = context;
         }
