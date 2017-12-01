@@ -7,7 +7,7 @@
       <!-- {{ selectedRow | json }} -->
       <!-- {{ selectedContaCorrente | json }} -->
 
-      <p-dataTable #dt [value]="queryResult" rowHover="true" selectionMode="single">
+      <!-- <p-dataTable #dt [value]="queryResult" rowHover="true" selectionMode="single">
         exportFilename="Rec_ass" styleClass="tdLessPadding">
         <p-header>
           <div class="ui-helper-clearfix">
@@ -23,7 +23,14 @@
         <p-footer>
           <div style="text-align:left">{{ dt.dataToRender.length }} contas encontradas</div>
         </p-footer>
-      </p-dataTable>
+      </p-dataTable> -->
+
+      <dx-data-grid id="gridContainer" [dataSource]="queryResult" [customizeColumns]="customizeColumns" (onContentReady)="onContentReady($event)">
+        <dxo-load-panel [enabled]="true"></dxo-load-panel>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-sorting mode="none"></dxo-sorting>
+      </dx-data-grid>
+
     </div>
   </div>
 </div>

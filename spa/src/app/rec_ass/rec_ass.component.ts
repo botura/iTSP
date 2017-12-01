@@ -4,6 +4,7 @@ import { BoundCallbackObservable } from 'rxjs/observable/BoundCallbackObservable
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { MessageService } from 'primeng/components/common/messageservice';
 import { SelectItem } from 'primeng/primeng';
+import { DxDataGridModule } from 'devextreme-angular';
 
 @Component({
   selector: 'app-recass',
@@ -48,4 +49,11 @@ export class RecAssComponent implements OnInit {
     this.messageService.add({ severity: 'info', summary: '', detail: 'Filtro resetado<br>Dados atualizados' });
   }
 
+  customizeColumns(columns) {
+    // columns[0].width = 70;
+  }
+
+  onContentReady(e) {
+    e.component.option('loadPanel.enabled', false);
+  }
 }

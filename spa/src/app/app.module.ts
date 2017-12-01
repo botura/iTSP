@@ -1,3 +1,4 @@
+import { DxDataGridModule } from 'devextreme-angular';
 import { RecAssService } from './../services/rec_ass.service';
 import { AUTH_PROVIDERS, AuthConfig, AuthHttp } from 'angular2-jwt';
 import { AuthService } from '../services/auth/auth.service';
@@ -196,7 +197,8 @@ export function authHttpServiceFactory(http: Http, options: RequestOptions) {
         ToolbarModule,
         TooltipModule,
         TreeModule,
-        TreeTableModule
+        TreeTableModule,
+        DxDataGridModule
     ],
     declarations: [
         AppComponent,
