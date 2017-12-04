@@ -154,6 +154,11 @@ namespace Tsp.Controllers
             return mapper.Map<IEnumerable<RelatorioRec_ass>, IEnumerable<Rec_assGridResource>>(list);
         }
 
+        [HttpGet("grafico-uf")]
+        public async Task<IEnumerable<Rec_assGrafico>> GetRec_assGraficoUF()
+        {
+            return await repository.GetRec_assGraficoUF();
+        }
     }
 
 }

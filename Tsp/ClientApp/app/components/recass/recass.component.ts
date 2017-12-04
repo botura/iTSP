@@ -1,45 +1,24 @@
-import { RecAssService } from '../../../services/rec_ass.service';
-import { BoundCallbackObservable } from 'rxjs/observable/BoundCallbackObservable';
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { DxDataGridModule } from 'devextreme-angular';
+import { Component, Inject } from '@angular/core';
+import { Http } from '@angular/http';
+import { DxPieChartModule } from 'devextreme-angular';
+import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
     selector: 'rec-ass',
     templateUrl: './recass.component.html',
-    // styleUrls: ['./rec_ass.component.scss'],
-    encapsulation: ViewEncapsulation.None
 })
 
 export class RecAssComponent implements OnInit {
-    queryResult: any = [];
+    private baseUrl: string;
+    private http: Http;
+    public queryResult: any = [];
 
-    constructor(private RecAssService: RecAssService) {
+    constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
+        this.http = http;
+        this.baseUrl = baseUrl;
     }
 
     ngOnInit() {
-        this.populateGrid();
     }
 
-    populateGrid() {
-        console.log('Inicio getGrid');
-        this.RecAssService.getGrid()
-            .subscribe(result => {
-                this.queryResult = result;
-                console.log('Fim getGrid');
-            });
-    }
-
-    resetFiltro(dt: any) {
-        this.populateGrid();
-        dt.reset();
-        // this.messageService.add({ severity: 'info', summary: '', detail: 'Filtro resetado<br>Dados atualizados' });
-    }
-
-    customizeColumns(columns: any) {
-        // columns[0].width = 70;
-    }
-
-    onContentReady(e: any) {
-        e.component.option('loadPanel.enabled', false);
-    }
 }

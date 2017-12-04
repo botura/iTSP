@@ -9,7 +9,9 @@ namespace Tsp.Core
         // Task<ContaCorrente> GetContaCorrente(int id);
         void Add(RelatorioRec_ass relatorioRec_ass);
         Task<List<RelatorioRec_ass>> GetRec_assGrid();
+        Task<List<Rec_assGrafico>> GetRec_assGraficoUF();
         // void Remove(ContaCorrente contacorrente);
+
 
     }
 }

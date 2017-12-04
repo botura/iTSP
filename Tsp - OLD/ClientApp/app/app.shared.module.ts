@@ -1,25 +1,18 @@
-import {
-    DxChartModule,
-    DxDataGridModule,
-    DxPieChartModule,
-    DxTabPanelModule,
-} from 'devextreme-angular';
-import { NgModule } from '@angular/core';
+import { RecAssComponent } from './components/recass/recass.component';
+import { RecAssService } from '../services/rec_ass.service';
+import { AppErrorHandler } from './common/app.error-handler';
+import { ErrorHandler, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
+import { DxDataGridModule } from 'devextreme-angular';
 
 import { AppComponent } from './components/app/app.component';
 import { NavMenuComponent } from './components/navmenu/navmenu.component';
 import { HomeComponent } from './components/home/home.component';
 import { FetchDataComponent } from './components/fetchdata/fetchdata.component';
 import { CounterComponent } from './components/counter/counter.component';
-import { RecAssComponent } from './components/recass/recass.component';
-import { RecAssGridComponent } from './components/recass/recassgrid.component';
-import { RecAssProdutoComponent } from './components/recass/recassproduto.component';
-import { RecAssUfComponent } from './components/recass/recassuf.component';
-import { RecAssDataPagtoComponent } from './components/recass/recassdatapagto.component';
 
 @NgModule({
     declarations: [
@@ -28,20 +21,13 @@ import { RecAssDataPagtoComponent } from './components/recass/recassdatapagto.co
         CounterComponent,
         FetchDataComponent,
         HomeComponent,
-        RecAssComponent,
-        RecAssGridComponent,
-        RecAssUfComponent,
-        RecAssProdutoComponent,
-        RecAssDataPagtoComponent,
+        RecAssComponent
     ],
     imports: [
         CommonModule,
         HttpModule,
         FormsModule,
         DxDataGridModule,
-        DxPieChartModule,
-        DxTabPanelModule,
-        DxChartModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
@@ -50,7 +36,12 @@ import { RecAssDataPagtoComponent } from './components/recass/recassdatapagto.co
             { path: 'rec-ass', component: RecAssComponent },
             { path: '**', redirectTo: 'home' }
         ])
-    ]
+    ],
+
+    providers: [
+        { provide: ErrorHandler, useClass: AppErrorHandler },
+        RecAssService,
+    ],
 })
 export class AppModuleShared {
 }
