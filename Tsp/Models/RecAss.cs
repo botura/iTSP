@@ -6,6 +6,7 @@ namespace Tsp.Models
     public class MdRecAss
     {
         public String produto { get; set; }
+        public String nome_gerente { get; set; }
         public DateTime vencimento_prestacao { get; set; }
         public DateTime data_pagamento { get; set; }
         public Decimal valor_pago { get; set; }

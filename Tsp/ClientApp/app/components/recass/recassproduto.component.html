@@ -1,4 +1,5 @@
 <dx-data-grid [dataSource]="queryResult" [rowAlternationEnabled]="true">
+  <dxo-export [enabled]="true" fileName="rec_ass - Por Produto"></dxo-export>
   <dxo-load-panel [enabled]="true"></dxo-load-panel>
   <dxo-scrolling mode="virtual"></dxo-scrolling>
   <dxo-sorting mode="multiple"></dxo-sorting>
@@ -6,10 +7,10 @@
   <dxo-filter-row [visible]="true"></dxo-filter-row>
   <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-  <dxi-column dataField="groupby" caption="Produto" [width]="350"></dxi-column>
+  <dxi-column dataField="groupby" caption="Produto" [width]="600"></dxi-column>
   <dxi-column dataField="soma" caption="R$ Recebido" dataType="number" format="currency"></dxi-column>
   <dxi-column dataField="valor_em_porc" caption="% Recebido" dataType="number"></dxi-column>
-  <dxi-column dataField="ticketMedio" caption="R$ Ticket médio" dataType="currency"></dxi-column>
+  <dxi-column dataField="ticketMedio" caption="R$ Ticket médio" dataType="number" format="currency"></dxi-column>
   <dxi-column dataField="tickets" caption="# tickets" dataType="number"></dxi-column>
   <dxi-column dataField="tickets_em_porc" caption="% tickets" dataType="number"></dxi-column>
 
