@@ -122,7 +122,7 @@ namespace Tsp.Database
                 while (reader.Read())
                 {
                     var grafico = new MdGrafico();
-                    grafico.groupby = MbGet.Date(reader["data_pagamento"]).GetValueOrDefault().ToString("F0");
+                    grafico.groupby = MbGet.Date(reader["data_pagamento"]).GetValueOrDefault().ToString("d");
                     grafico.soma = MbGet.Dec(reader["soma"]);
                     grafico.valor_em_porc = MbGet.Dec(reader["valor_em_porc"]);
                     grafico.tickets = MbGet.Int(reader["tickets"]);

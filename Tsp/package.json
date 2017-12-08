@@ -61,6 +61,7 @@
   },
   "dependencies": {
     "devextreme": "^17.2.3",
-    "devextreme-angular": "^17.2.3"
+    "devextreme-angular": "^17.2.3",
+    "moment": "^2.19.3"
   }
 }

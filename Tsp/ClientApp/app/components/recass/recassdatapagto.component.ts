@@ -37,7 +37,8 @@ export class RecAssDataPagtoComponent implements OnInit {
 
     customizeTooltip(arg: any) {
         return {
-            text: arg.argumentText + "<br/>" + arg.valueText
+            text: arg.argumentText + "<br/>" + new Intl.NumberFormat('pt', { style: 'currency', currency: 'BRL' }).format(arg.value)
+            
         };
     }
 }

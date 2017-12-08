@@ -1,8 +1,11 @@
 import {
+    DxButtonModule,
     DxChartModule,
     DxDataGridModule,
-    DxPieChartModule,
+    DxDateBoxModule,
+    DxFileUploaderModule,
     DxTabPanelModule,
+    DxToolbarModule,
 } from 'devextreme-angular';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -20,6 +23,8 @@ import { RecAssGridComponent } from './components/recass/recassgrid.component';
 import { RecAssProdutoComponent } from './components/recass/recassproduto.component';
 import { RecAssUfComponent } from './components/recass/recassuf.component';
 import { RecAssDataPagtoComponent } from './components/recass/recassdatapagto.component';
+import { ImportComponent } from './components/import/import.component';
+import { ImportRecAssComponent } from './components/import/import.recass.component';
 
 @NgModule({
     declarations: [
@@ -33,21 +38,27 @@ import { RecAssDataPagtoComponent } from './components/recass/recassdatapagto.co
         RecAssUfComponent,
         RecAssProdutoComponent,
         RecAssDataPagtoComponent,
+        ImportComponent,
+        ImportRecAssComponent,
     ],
     imports: [
         CommonModule,
         HttpModule,
         FormsModule,
         DxDataGridModule,
-        DxPieChartModule,
         DxTabPanelModule,
         DxChartModule,
+        DxFileUploaderModule,
+        DxDateBoxModule,
+        DxButtonModule,
+        DxToolbarModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
             { path: 'counter', component: CounterComponent },
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'rec-ass', component: RecAssComponent },
+            { path: 'importar', component: ImportComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]
