@@ -21,13 +21,13 @@
 
 <dx-tab-panel #tab [selectedIndex]="0">
     <dxi-item class="tabpanel-item" title="Tendência" icon="chart">
-        <rec-ass-datapagto></rec-ass-datapagto>
+        <rec-ass-datapagto [filtro]="filtro"></rec-ass-datapagto>
     </dxi-item>
     <dxi-item class="tabpanel-item" title="Agrupado por estado" icon="chart">
-        <rec-ass-uf></rec-ass-uf>
+        <rec-ass-uf [filtro]="filtro"></rec-ass-uf>
     </dxi-item>
     <dxi-item class="tabpanel-item" title="Agrupado por produto" icon="chart">
-        <rec-ass-produto></rec-ass-produto>
+        <rec-ass-produto [filtro]="filtro"></rec-ass-produto>
     </dxi-item>
     <!-- <dxi-item class="tabpanel-item" title="Grid" icon="doc">
         <rec-ass-grid></rec-ass-grid>

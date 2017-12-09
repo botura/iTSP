@@ -4,6 +4,7 @@ import {
     DxDataGridModule,
     DxDateBoxModule,
     DxFileUploaderModule,
+    DxLoadPanelModule,
     DxTabPanelModule,
     DxToolbarModule,
 } from 'devextreme-angular';
@@ -52,6 +53,7 @@ import { ImportRecAssComponent } from './components/import/import.recass.compone
         DxDateBoxModule,
         DxButtonModule,
         DxToolbarModule,
+        DxLoadPanelModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },

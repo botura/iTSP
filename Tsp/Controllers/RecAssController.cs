@@ -33,29 +33,31 @@ namespace Tsp.Controllers
 
         // Grafico Somatoria por UF
         [HttpGet("somatoriaUf")]
-        public IEnumerable<MdGrafico> GetRecAssSomatoriaUf()
+        public IEnumerable<MdGrafico> GetRecAssSomatoriaUf(string dataInicial, string dataFinal)
         {
             Console.WriteLine("");
             Console.WriteLine("/api/rec_ass/somatoriaUf");
-            return RecAssDB.GetSomatoriaUf();
+            return RecAssDB.GetSomatoriaUf(dataInicial, dataFinal);
         }
 
         // Grafico Somatoria por produto
         [HttpGet("somatoriaProduto")]
-        public IEnumerable<MdGrafico> GetRecAssSomatoriaProduto()
+        public IEnumerable<MdGrafico> GetRecAssSomatoriaProduto(string dataInicial, string dataFinal)
         {
             Console.WriteLine("");
             Console.WriteLine("/api/rec_ass/somatoriaProduto");
-            return RecAssDB.GetSomatoriaProduto();
+            return RecAssDB.GetSomatoriaProduto(dataInicial, dataFinal);
         }
 
         // Grafico Somatoria por produto
         [HttpGet("somatoriaDataPagamento")]
-        public IEnumerable<MdGrafico> GetRecAssSomatoriaDataPagto()
+        public IEnumerable<MdGrafico> GetRecAssSomatoriaDataPagto(string dataInicial, string dataFinal)
         {
             Console.WriteLine("");
             Console.WriteLine("/api/rec_ass/somatoriaDataPagamento");
-            return RecAssDB.GetSomatoriaDataPagto();
+            Console.WriteLine("Data inicial: " + dataInicial);
+            Console.WriteLine("Data final: " + dataFinal);
+            return RecAssDB.GetSomatoriaDataPagto(dataInicial, dataFinal);
         }
 
         // Upload do relatório rec_ass
@@ -90,7 +92,7 @@ namespace Tsp.Controllers
             Console.WriteLine("");
             Console.WriteLine("/api/rec_ass/upload");
             Console.WriteLine("Started at: " + start.ToLongTimeString());
-            
+
             RecAssDB.Insert(AllLines, file.FileName);
 
             end = DateTime.Now;
@@ -100,6 +102,16 @@ namespace Tsp.Controllers
 
             return Ok("Linhas processadas");
         }
+
+        // Teste
+        [HttpGet("teste")]
+        public bool GetTeste(string filtro)
+        {
+            Console.WriteLine("/api/rec_ass/teste");
+            Console.WriteLine(filtro);
+            return true;
+        }
+
     }
 }
 

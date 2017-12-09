@@ -2,7 +2,6 @@ import * as moment from 'moment';
 import { Component, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
-import notify from 'devextreme/ui/notify';
 
 @Component({
     selector: 'rec-ass',
@@ -15,6 +14,10 @@ export class RecAssComponent implements OnInit {
     public queryResult: any = [];
     dataDe: Date = new Date();
     dataAte: Date = new Date();
+    filtro: any = {
+        dataInicial: '',
+        dataFinal: '',
+    }
 
     constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
         this.http = http;
@@ -23,13 +26,16 @@ export class RecAssComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.btFiltrar();
     }
 
     btFiltrar() {
         {
-            notify('Botão filtrar foi pressionado!');
-            console.log('Data de: ' + moment(this.dataDe).format("YYYY-MM-DD"));
-            console.log('Data até: ' + moment(this.dataAte).format("YYYY-MM-DD"));
+            this.filtro = {};
+            this.filtro.dataInicial =  moment(this.dataDe).format("YYYY-MM-DD");
+            this.filtro.dataFinal =  moment(this.dataAte).format("YYYY-MM-DD");
+            // console.log(this.filtro);
+            // notify('Botão filtrar foi pressionado!');
         }
     }
 }

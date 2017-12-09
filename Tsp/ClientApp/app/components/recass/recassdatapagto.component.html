@@ -15,7 +15,6 @@
           <dxo-format type="decimal"></dxo-format>
         </dxo-label>
       </dxo-argument-axis>
-
       <dxo-export [enabled]="true"></dxo-export>
       <dxo-scroll-bar [visible]="true"></dxo-scroll-bar>
       <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeTooltip">
@@ -25,6 +24,7 @@
 
   <div>
     <dx-data-grid [dataSource]="queryResult" [rowAlternationEnabled]="true">
+      <dxo-export [enabled]="true" fileName="rec_ass - Por data"></dxo-export>
       <dxo-load-panel [enabled]="true"></dxo-load-panel>
       <dxo-scrolling mode="virtual"></dxo-scrolling>
       <dxo-sorting mode="multiple"></dxo-sorting>

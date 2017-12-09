@@ -1,14 +1,14 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input, OnChanges } from '@angular/core';
 import { Http } from '@angular/http';
 import { DxDataGridModule } from 'devextreme-angular';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
     selector: 'rec-ass-grid',
     templateUrl: './recassgrid.component.html',
 })
 
-export class RecAssGridComponent implements OnInit {
+export class RecAssGridComponent implements OnChanges {
+    @Input() filtro: any;
     private baseUrl: string;
     private http: Http;
     public queryResult: any = [];
@@ -18,11 +18,11 @@ export class RecAssGridComponent implements OnInit {
         this.baseUrl = baseUrl;
     }
 
-    ngOnInit() {
-        this.populateGrid();
+    ngOnChanges() {
+        this.populate();
     }
 
-    populateGrid() {
+    populate() {
         console.log('Inicio api/recass/grid:');
         this.queryResult = null;
 
@@ -30,16 +30,6 @@ export class RecAssGridComponent implements OnInit {
             this.queryResult = result.json();
             console.log('Fim api/recass/grid');
         }, error => console.error(error));
-    }
-
-    resetFiltro(dt: any) {
-        this.populateGrid();
-        dt.reset();
-        // this.messageService.add({ severity: 'info', summary: '', detail: 'Filtro resetado<br>Dados atualizados' });
-    }
-
-    customizeColumns(columns: any) {
-        // columns[0].width = 70;
     }
 
     onContentReady(e: any) {

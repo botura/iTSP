@@ -1,14 +1,14 @@
-import { Component, Inject } from '@angular/core';
+import { Component, Inject, Input, OnChanges } from '@angular/core';
 import { Http } from '@angular/http';
 import { DxPieChartModule } from 'devextreme-angular';
-import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 
 @Component({
     selector: 'rec-ass-uf',
     templateUrl: './recassuf.component.html',
 })
 
-export class RecAssUfComponent implements OnInit {
+export class RecAssUfComponent implements OnChanges {
+    @Input() filtro: any;
     private baseUrl: string;
     private http: Http;
     public queryResult: any = [];
@@ -18,7 +18,7 @@ export class RecAssUfComponent implements OnInit {
         this.baseUrl = baseUrl;
     }
 
-    ngOnInit() {
+    ngOnChanges() {
         this.populate();
     }
 
@@ -26,17 +26,27 @@ export class RecAssUfComponent implements OnInit {
         console.log('Inicio api/recass/somatoriaUf');
         this.queryResult = null;
 
-        this.http.get(this.baseUrl + 'api/rec_ass/somatoriaUf').subscribe(result => {
+        this.http.get(this.baseUrl + 'api/rec_ass/somatoriaUf' + '?' + this.toQueryString(this.filtro)).subscribe(result => {
             this.queryResult = result.json();
             console.log('Fim api/recass/somatoriaUf');
         }, error => console.error(error));
+    }
+
+    toQueryString(obj: any) {
+        var parts = [];
+        for (var property in obj) {
+            var value = obj[property];
+            if (value != null && value != undefined)
+                parts.push(encodeURIComponent(property) + '=' + encodeURIComponent(value));
+        }
+        return parts.join('&');
     }
 
     pointClickHandler(e: any) {
         this.toggleVisibility(e.target);
     }
 
-    legendClickHandler (e: any) {
+    legendClickHandler(e: any) {
         let arg = e.target,
             item = e.component.getAllSeries()[0].getPointsByArg(arg)[0];
 
@@ -44,9 +54,9 @@ export class RecAssUfComponent implements OnInit {
     }
 
     toggleVisibility(item: any) {
-        if(item.isVisible()) {
+        if (item.isVisible()) {
             item.hide();
-        } else { 
+        } else {
             item.show();
         }
     }
@@ -58,6 +68,5 @@ export class RecAssUfComponent implements OnInit {
 
     customizePorc(data: any) {
         return data.value.toFixed(2);
-        // return "First: " + new DatePipe("en-US").transform(data.value, 'MMM dd, yyyy');
     }
 }

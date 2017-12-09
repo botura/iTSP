@@ -42,11 +42,11 @@ namespace Tsp.Database
         }
 
         // GetSomatoriaUf
-        public static IEnumerable<MdGrafico> GetSomatoriaUf()
+        public static IEnumerable<MdGrafico> GetSomatoriaUf(string dataInicial, string dataFinal)
         {
             var list = new List<MdGrafico>();
             MySqlConnection con = new MySqlConnection(_Global.ConnectionString);
-            string sql = "CALL estatistica_poruf()";
+            string sql = $"CALL estatistica_poruf('{dataInicial}', '{dataFinal}')";
 
             try
             {
@@ -75,11 +75,11 @@ namespace Tsp.Database
         }
 
         // GetSomatoriaProduto
-        public static IEnumerable<MdGrafico> GetSomatoriaProduto()
+        public static IEnumerable<MdGrafico> GetSomatoriaProduto(string dataInicial, string dataFinal)
         {
             var list = new List<MdGrafico>();
             MySqlConnection con = new MySqlConnection(_Global.ConnectionString);
-            string sql = "CALL estatistica_porproduto()";
+            string sql = $"CALL estatistica_porproduto('{dataInicial}', '{dataFinal}')";
 
             try
             {
@@ -108,11 +108,11 @@ namespace Tsp.Database
         }
 
         // GetSomatoriaDataPagto
-        public static IEnumerable<MdGrafico> GetSomatoriaDataPagto()
+        public static IEnumerable<MdGrafico> GetSomatoriaDataPagto(string dataInicial, string dataFinal)
         {
             var list = new List<MdGrafico>();
             MySqlConnection con = new MySqlConnection(_Global.ConnectionString);
-            string sql = "CALL estatistica_pordatapagamento()";
+            string sql = $"CALL estatistica_pordatapagamento('{dataInicial}', '{dataFinal}')";
 
             try
             {
