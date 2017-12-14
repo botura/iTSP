@@ -235,3 +235,6 @@ _Pvt_Extensions
 
 # FAKE - F# Make
 .fake/
+
+# Uploads do projeto TSP
+/wwwroot/uploads/rec_ass/

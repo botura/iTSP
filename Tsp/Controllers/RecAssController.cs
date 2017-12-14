@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -85,7 +86,9 @@ namespace Tsp.Controllers
             // Le o arquivo na memoria
             string[] AllLines = null;
             AllLines = new string[500000]; //only allocate memory here
-            AllLines = System.IO.File.ReadAllLines(filePath, System.Text.Encoding.UTF8);
+            // AllLines = System.IO.File.ReadAllLines(filePath, System.Text.Encoding.UTF8);
+            var enc1252 = CodePagesEncodingProvider.Instance.GetEncoding(1252);
+            AllLines = System.IO.File.ReadAllLines(filePath, enc1252);
 
             DateTime start = DateTime.Now;
             DateTime end;

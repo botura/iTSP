@@ -6,6 +6,7 @@ using System.Data;
 using Tsp.Models;
 using System.Globalization;
 using System.Threading.Tasks;
+using System.Text;
 
 namespace Tsp.Database
 {
@@ -142,61 +143,11 @@ namespace Tsp.Database
 
         public static bool Insert(string[] AllLines, string fileName)
         {
-            // MySqlConnection con = new MySqlConnection(_Global.ConnectionString);
-            // string query = "";
-            // MdUploadRecAss reg = new MdUploadRecAss();
-            // MySqlCommand cmd = new MySqlCommand();
-            // cmd.Connection = con;
-            // try
-            // {
-            // con.Open();
-            // for (int i = 1; i < AllLines.Length; i++)
-            // {
-            //     reg = ProcessaLinhaRec_ass(AllLines[i]);
-            //     reg.linhaArquivo = i;
-            //     reg.nomeArquivo = fileName;
-
-            //     query = $"INSERT INTO rec_ass" +
-            //             " (`tipo_pagamento_ge`, `tipo_pagamento`, `processamento`," +
-            //             " `cod_receb`, `credor`, `cliente`, `cpf`," +
-            //             " `nome`, `cod_produto`, `produto`," +
-            //             " `contrato`, `vencimento_prestacao`, `numero_prestacao`, `data_pagamento`," +
-            //             " `valor_pago`, `bonificacao_maxima`, `bonificacao_a_receber`, `valor_honorarios`," +
-            //             " `valor_adicional`, `operador`, `cod_gerente`, `nome_gerente`, `uf_comer`," +
-            //             " `uf_resid`, `campanha_recebimento`, `campanha_cinco`, `campanha_restante`," +
-            //             " `indicador`, `assessoria`, `debito_nao_ajuizavel`, `qtde_parcela_do_acordo`," +
-            //             " `qtde_de_parcelas_em_aberto`, `parcela_do_acordo`, `cod_entidade`," +
-            //             " `valor_principal`, `desconto_aplicado`, `atraso`, `nivel_negociacao`," +
-            //             " `divida_atualizada`, `linhaArquivo`, `nomeArquivo`)" +
-            //             " VALUES" +
-            //             $" ('{reg.tipo_pagamento_ge}', '{reg.tipo_pagamento}', '{reg.processamento.ToString("yyyy-MM-dd")}'," +
-            //             $" '{reg.cod_receb}', '{reg.credor}', '{reg.cliente}', '{reg.cpf}'," +
-            //             $" '{reg.nome}', '{reg.cod_produto}', '{reg.produto}'," +
-            //             $" '{reg.contrato}', '{reg.vencimento_prestacao.ToString("yyyy-MM-dd")}', '{reg.numero_prestacao}', '{reg.data_pagamento.ToString("yyyy-MM-dd")}'," +
-            //             $" '{reg.valor_pago.ToString("F", CultureInfo.InvariantCulture)}', '{reg.bonificacao_maxima.ToString("F", CultureInfo.InvariantCulture)}', '{reg.bonificacao_a_receber.ToString("F", CultureInfo.InvariantCulture)}', '{reg.valor_honorarios.ToString("F", CultureInfo.InvariantCulture)}'," +
-            //             $" '{reg.valor_adicional.ToString("F", CultureInfo.InvariantCulture)}', '{reg.operador}', '{reg.cod_gerente}', '{reg.nome_gerente}', '{reg.uf_comer}'," +
-            //             $" '{reg.uf_resid}', '{reg.campanha_recebimento}', '{reg.campanha_cinco}', '{reg.campanha_restante}'," +
-            //             $" '{reg.indicador}', '{reg.assessoria}', '{reg.debito_nao_ajuizavel}', '{reg.qtde_parcela_do_acordo.ToString("F0", CultureInfo.InvariantCulture)}'," +
-            //             $" '{reg.qtde_de_parcelas_em_aberto.ToString("F0", CultureInfo.InvariantCulture)}', '{reg.parcela_do_acordo.ToString("F0", CultureInfo.InvariantCulture)}', '{reg.cod_entidade}'," +
-            //             $" '{reg.valor_principal.ToString("F", CultureInfo.InvariantCulture)}', '{reg.desconto_aplicado.ToString("F", CultureInfo.InvariantCulture)}', '{reg.atraso.ToString("F", CultureInfo.InvariantCulture)}', '{reg.nivel_negociacao.ToString("F", CultureInfo.InvariantCulture)}'," +
-            //             $" '{reg.divida_atualizada.ToString("F", CultureInfo.InvariantCulture)}', '{reg.linhaArquivo}', '{reg.nomeArquivo}')";
-            //     if (i == 1)
-            //     {
-            //         Console.WriteLine(query);
-            //     }
-            //     cmd.CommandText = query;
-            //     cmd.ExecuteNonQuery();
-            //     if ((i % 1000) == 0)
-            //     {
-            //         Console.WriteLine($"Linha: {i}");
-            //     }
-            // }
             Parallel.For(1, AllLines.Length, i =>
             {
                 MySqlConnection con = new MySqlConnection(_Global.ConnectionString);
                 string query = "";
                 MdUploadRecAss reg = new MdUploadRecAss();
-
                 reg = ProcessaLinhaRec_ass(AllLines[i]);
                 reg.linhaArquivo = i;
                 reg.nomeArquivo = fileName;
@@ -224,14 +175,68 @@ namespace Tsp.Database
                         $" '{reg.qtde_de_parcelas_em_aberto.ToString("F0", CultureInfo.InvariantCulture)}', '{reg.parcela_do_acordo.ToString("F0", CultureInfo.InvariantCulture)}', '{reg.cod_entidade}'," +
                         $" '{reg.valor_principal.ToString("F", CultureInfo.InvariantCulture)}', '{reg.desconto_aplicado.ToString("F", CultureInfo.InvariantCulture)}', '{reg.atraso.ToString("F", CultureInfo.InvariantCulture)}', '{reg.nivel_negociacao.ToString("F", CultureInfo.InvariantCulture)}'," +
                         $" '{reg.divida_atualizada.ToString("F", CultureInfo.InvariantCulture)}', '{reg.linhaArquivo}', '{reg.nomeArquivo}')";
+                //         " (@tipo_pagamento_ge, @tipo_pagamento, @processamento," +
+                //         " @cod_receb, @credor, @cliente, @cpf," +
+                //         " @nome, @cod_produto, @produto," +
+                //         " @contrato, @vencimento_prestacao, @numero_prestacao, @data_pagamento," +
+                //         " @valor_pago, @bonificacao_maxima, @bonificacao_a_receber, @valor_honorarios," +
+                //         " @valor_adicional, @operador, @cod_gerente, @nome_gerente, @uf_comer," +
+                //         " @uf_resid, @campanha_recebimento, @campanha_cinco, @campanha_restante," +
+                //         " @indicador, @assessoria, @debito_nao_ajuizavel, @qtde_parcela_do_acordo," +
+                //         " @qtde_de_parcelas_em_aberto, @parcela_do_acordo, @cod_entidade," +
+                //         " @valor_principal, @desconto_aplicado, @atraso, @nivel_negociacao," +
+                //         " @divida_atualizada, @linhaArquivo, @nomeArquivo)";
                 MySqlCommand cmd = new MySqlCommand(query, con);
+                // cmd.Parameters.AddWithValue("@tipo_pagamento_ge", reg.tipo_pagamento_ge);
+                // cmd.Parameters.AddWithValue("@tipo_pagamento", reg.tipo_pagamento);
+                // cmd.Parameters.AddWithValue("@processamento", reg.processamento);
+                // cmd.Parameters.AddWithValue("@cod_receb", reg.cod_receb);
+                // cmd.Parameters.AddWithValue("@credor", reg.credor);
+                // cmd.Parameters.AddWithValue("@cliente", reg.cliente);
+                // cmd.Parameters.AddWithValue("@cpf", reg.cpf);
+                // cmd.Parameters.AddWithValue("@nome", reg.nome);
+                // cmd.Parameters.AddWithValue("@cod_produto", reg.cod_produto);
+                // cmd.Parameters.AddWithValue("@produto", reg.produto);
+                // cmd.Parameters.AddWithValue("@contrato", reg.contrato);
+                // cmd.Parameters.AddWithValue("@vencimento_prestacao", reg.vencimento_prestacao);
+                // cmd.Parameters.AddWithValue("@numero_prestacao", reg.numero_prestacao);
+                // cmd.Parameters.AddWithValue("@data_pagamento", reg.data_pagamento);
+                // cmd.Parameters.AddWithValue("@valor_pago", reg.valor_pago);
+                // cmd.Parameters.AddWithValue("@bonificacao_maxima", reg.bonificacao_maxima);
+                // cmd.Parameters.AddWithValue("@bonificacao_a_receber", reg.bonificacao_a_receber);
+                // cmd.Parameters.AddWithValue("@valor_honorarios", reg.valor_honorarios);
+                // cmd.Parameters.AddWithValue("@valor_adicional", reg.valor_adicional);
+                // cmd.Parameters.AddWithValue("@operador", reg.operador);
+                // cmd.Parameters.AddWithValue("@cod_gerente", reg.cod_gerente);
+                // cmd.Parameters.AddWithValue("@nome_gerente", reg.nome_gerente);
+                // cmd.Parameters.AddWithValue("@uf_comer", reg.uf_comer);
+                // cmd.Parameters.AddWithValue("@uf_resid", reg.uf_resid);
+                // cmd.Parameters.AddWithValue("@campanha_recebimento", reg.campanha_recebimento);
+                // cmd.Parameters.AddWithValue("@campanha_cinco", reg.campanha_cinco);
+                // cmd.Parameters.AddWithValue("@campanha_restante", reg.campanha_restante);
+                // cmd.Parameters.AddWithValue("@indicador", reg.indicador);
+                // cmd.Parameters.AddWithValue("@assessoria", reg.assessoria);
+                // cmd.Parameters.AddWithValue("@debito_nao_ajuizavel", reg.debito_nao_ajuizavel);
+                // cmd.Parameters.AddWithValue("@qtde_parcela_do_acordo", reg.qtde_parcela_do_acordo);
+                // cmd.Parameters.AddWithValue("@qtde_de_parcelas_em_aberto", reg.qtde_de_parcelas_em_aberto);
+                // cmd.Parameters.AddWithValue("@parcela_do_acordo", reg.parcela_do_acordo);
+                // cmd.Parameters.AddWithValue("@cod_entidade", reg.cod_entidade);
+                // cmd.Parameters.AddWithValue("@valor_principal", reg.valor_principal);
+                // cmd.Parameters.AddWithValue("@desconto_aplicado", reg.desconto_aplicado);
+                // cmd.Parameters.AddWithValue("@atraso", reg.atraso);
+                // cmd.Parameters.AddWithValue("@nivel_negociacao", reg.nivel_negociacao);
+                // cmd.Parameters.AddWithValue("@divida_atualizada", reg.divida_atualizada);
+                // cmd.Parameters.AddWithValue("@linhaArquivo", reg.linhaArquivo);
+                // cmd.Parameters.AddWithValue("@nomeArquivo", reg.nomeArquivo);
+                // Console.WriteLine(cmd.CommandText);
                 try
                 {
                     con.Open();
                     cmd.ExecuteNonQuery();
                 }
-                catch (MySqlException)
+                catch (MySqlException ex)
                 {
+                    Console.WriteLine("ERRO MYSQL: " + ex);
                 }
                 finally
                 {
