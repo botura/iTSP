@@ -103,7 +103,7 @@ namespace Tsp.Controllers
             Console.WriteLine("Time: " + (end - start));
             Console.WriteLine();
 
-            return Ok("Linhas processadas");
+            return Ok($"{ AllLines.Length } linhas processadas");
         }
 
         // Teste
