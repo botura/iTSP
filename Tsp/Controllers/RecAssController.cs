@@ -27,38 +27,48 @@ namespace Tsp.Controllers
         [HttpGet("grid")]
         public IEnumerable<MdRecAss> GetRecAssGrid()
         {
-            Console.WriteLine("");
+            DateTime start = DateTime.Now;
+            IEnumerable<MdRecAss> result = RecAssDB.GetGrid();
+            Console.WriteLine("----------");
             Console.WriteLine("/api/rec_ass/grid");
-            return RecAssDB.GetGrid();
+            Console.WriteLine("Executado em: " + (DateTime.Now - start));
+            return result;
         }
 
         // Grafico Somatoria por UF
         [HttpGet("somatoriaUf")]
         public IEnumerable<MdGrafico> GetRecAssSomatoriaUf(string dataInicial, string dataFinal)
         {
-            Console.WriteLine("");
+            DateTime start = DateTime.Now;
+            IEnumerable<MdGrafico> result = RecAssDB.GetSomatoriaUf(dataInicial, dataFinal);
+            Console.WriteLine("----------");
             Console.WriteLine("/api/rec_ass/somatoriaUf");
-            return RecAssDB.GetSomatoriaUf(dataInicial, dataFinal);
+            Console.WriteLine("Executado em: " + (DateTime.Now - start));
+            return result;
         }
 
         // Grafico Somatoria por produto
         [HttpGet("somatoriaProduto")]
         public IEnumerable<MdGrafico> GetRecAssSomatoriaProduto(string dataInicial, string dataFinal)
         {
-            Console.WriteLine("");
+            DateTime start = DateTime.Now;
+            IEnumerable<MdGrafico> result = RecAssDB.GetSomatoriaProduto(dataInicial, dataFinal);
+            Console.WriteLine("----------");
             Console.WriteLine("/api/rec_ass/somatoriaProduto");
-            return RecAssDB.GetSomatoriaProduto(dataInicial, dataFinal);
+            Console.WriteLine("Executado em: " + (DateTime.Now - start));
+            return result;
         }
 
         // Grafico Somatoria por produto
         [HttpGet("somatoriaDataPagamento")]
         public IEnumerable<MdGrafico> GetRecAssSomatoriaDataPagto(string dataInicial, string dataFinal)
         {
-            Console.WriteLine("");
+            DateTime start = DateTime.Now;
+            IEnumerable<MdGrafico> result = RecAssDB.GetSomatoriaDataPagto(dataInicial, dataFinal);
+            Console.WriteLine("----------");
             Console.WriteLine("/api/rec_ass/somatoriaDataPagamento");
-            Console.WriteLine("Data inicial: " + dataInicial);
-            Console.WriteLine("Data final: " + dataFinal);
-            return RecAssDB.GetSomatoriaDataPagto(dataInicial, dataFinal);
+            Console.WriteLine("Executado em: " + (DateTime.Now - start));
+            return result;
         }
 
         // Upload do relatório rec_ass
@@ -91,30 +101,12 @@ namespace Tsp.Controllers
             AllLines = System.IO.File.ReadAllLines(filePath, enc1252);
 
             DateTime start = DateTime.Now;
-            DateTime end;
-            Console.WriteLine("");
+            RecAssDB.InsertV3(AllLines, file.FileName);
+            Console.WriteLine("----------");
             Console.WriteLine("/api/rec_ass/upload");
-            Console.WriteLine("Started at: " + start.ToLongTimeString());
-
-            RecAssDB.Insert(AllLines, file.FileName);
-
-            end = DateTime.Now;
-            Console.WriteLine("Finished at: " + end.ToLongTimeString());
-            Console.WriteLine("Time: " + (end - start));
-            Console.WriteLine();
-
+            Console.WriteLine("Executado em: " + (DateTime.Now - start));
             return Ok($"{ AllLines.Length } linhas processadas");
         }
-
-        // Teste
-        [HttpGet("teste")]
-        public bool GetTeste(string filtro)
-        {
-            Console.WriteLine("/api/rec_ass/teste");
-            Console.WriteLine(filtro);
-            return true;
-        }
-
     }
 }
 

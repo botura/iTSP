@@ -1,8 +1,8 @@
-<dx-load-panel [(visible)]="loadingVisible" shadingColor="rgba(0,0,0,0.4)" [showIndicator]="true"
-[showPane]="true" [shading]="true" [closeOnOutsideClick]="true"></dx-load-panel>
+<dx-load-panel [(visible)]="loadingVisible" shadingColor="rgba(0,0,0,0.4)" [showIndicator]="true" [showPane]="true" [shading]="true"
+    [closeOnOutsideClick]="true"></dx-load-panel>
 
 <div class="widget-container">
-    <dx-file-uploader #fileUploader uploadUrl="http://192.168.0.246/api/rec_ass/upload" [multiple]="false" name="file" uploadMode="useButtons"
+    <dx-file-uploader #fileUploader uploadUrl="http://localhost:5000/api/rec_ass/upload" [multiple]="false" name="file" uploadMode="useButtons"
         accept="*.txt" (onUploaded)="onUploaded($event)" (onUploadError)="onUploadError($event)" (onUploadStarted)="onUploadStarted()"></dx-file-uploader>
     <div class="content">
     </div>
