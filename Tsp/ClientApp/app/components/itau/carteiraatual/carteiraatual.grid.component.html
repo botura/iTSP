@@ -1,12 +1,5 @@
-<h1>Rec_ass</h1>
-
-
-<p *ngIf="!queryResult">
-  <em>Processando...</em>
-</p>
-
-<dx-data-grid *ngIf="queryResult" id="gridContainer" [dataSource]="queryResult" (onContentReady)="onContentReady($event)">
-  <dxo-export [enabled]="true" fileName="rec_ass - Grid"></dxo-export>
+<dx-data-grid *ngIf="queryResult" id="gridContainer" [dataSource]="queryResult" [allowColumnResizing]="true" columnResizingMode="widget">
+  <dxo-export [enabled]="true" fileName="Carteira atual - Grid"></dxo-export>
   <dxo-load-panel [enabled]="true"></dxo-load-panel>
   <dxo-scrolling mode="virtual"></dxo-scrolling>
   <dxo-sorting mode="multiple"></dxo-sorting>
@@ -15,16 +8,16 @@
   <dxo-group-panel [visible]="true"></dxo-group-panel>
   <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
 
-  <dxi-column dataField="produto" caption="Produto" [width]="500"></dxi-column>
+  <!-- <dxi-column dataField="produto" caption="Produto" [width]="500"></dxi-column>
   <dxi-column dataField="uf_resid" caption="UF" [groupIndex]="0" [width]="100"></dxi-column>
   <dxi-column dataField="data_pagamento" caption="Dt pagto" dataType="datetime" format="dd/MM/yyyy" [width]="150"></dxi-column>
-  <dxi-column dataField="valor_pago" caption="R$ pago" dataType="number" format="currency" [width]="150"></dxi-column>
+  <dxi-column dataField="valor_pago" caption="R$ pago" dataType="number" format="currency" [width]="150"></dxi-column> -->
 
   <dxo-summary>
-    <dxi-group-item column="produto" summaryType="count" displayFormat="{0} itens">
+    <!-- <dxi-group-item column="produto" summaryType="count" displayFormat="{0} itens">
     </dxi-group-item>
     <dxi-group-item column="valor_pago" summaryType="sum" valueFormat="currency" [showInGroupFooter]="false" [alignByColumn]="true">
-    </dxi-group-item>
+    </dxi-group-item> -->
   </dxo-summary>
 
 </dx-data-grid>

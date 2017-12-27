@@ -29,7 +29,7 @@ namespace Tsp.Database
                     var recAss = new MdRecAss();
                     recAss.produto = (string)reader["produto"];
                     recAss.nome_gerente = (string)reader["nome_gerente"];
-                    recAss.data_pagamento = (DateTime)reader["data_pagamento"];
+                    recAss.data_pagamento = MbGet.Date(reader["data_pagamento"]).GetValueOrDefault().ToString("yyyy/MM/dd");
                     recAss.valor_pago = (decimal)reader["valor_pago"];
                     recAss.uf_resid = (string)reader["uf_resid"];
                     list.Add(recAss);
@@ -123,7 +123,7 @@ namespace Tsp.Database
                 while (reader.Read())
                 {
                     var grafico = new MdGrafico();
-                    grafico.groupby = MbGet.Date(reader["data_pagamento"]).GetValueOrDefault().ToString("dd/MM/yyyy");
+                    grafico.groupby = MbGet.Date(reader["data_pagamento"]).GetValueOrDefault().ToString("yyyy/MM/dd");
                     grafico.soma = MbGet.Dec(reader["soma"]);
                     grafico.valor_em_porc = MbGet.Dec(reader["valor_em_porc"]);
                     grafico.tickets = MbGet.Int(reader["tickets"]);

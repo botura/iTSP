@@ -52,4 +52,17 @@ export class RecAssDataPagtoComponent implements OnChanges {
 
         };
     }
+
+    calculateSummary(options: any) {
+        console.log(options);
+        if (options.name === 'customSummary1') {
+            if (options.summaryProcess === 'start') {
+                options.totalValue = 0;
+            } 
+            else if (options.summaryProcess === 'calculate') {
+                options.totalValue += 1;
+                console.log(options.totalValue);
+            }
+        }
+    }
 }

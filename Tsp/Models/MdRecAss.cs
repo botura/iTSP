@@ -8,7 +8,7 @@ namespace Tsp.Models
         public String produto { get; set; }
         public String nome_gerente { get; set; }
         public DateTime vencimento_prestacao { get; set; }
-        public DateTime data_pagamento { get; set; }
+        public string data_pagamento { get; set; }
         public Decimal valor_pago { get; set; }
         public String uf_resid { get; set; }
         public Decimal qtde_parcela_do_acordo { get; set; }

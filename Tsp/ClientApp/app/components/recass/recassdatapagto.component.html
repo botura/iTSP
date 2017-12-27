@@ -28,19 +28,18 @@
       <dxo-load-panel [enabled]="true"></dxo-load-panel>
       <dxo-scrolling mode="virtual"></dxo-scrolling>
       <dxo-sorting mode="multiple"></dxo-sorting>
-
       <dxo-filter-row [visible]="true"></dxo-filter-row>
       <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-      <dxi-column dataField="groupby" caption="Data pagto" [width]="350"></dxi-column>
+      <dxi-column dataField="groupby" caption="Data pagto" dataType="datetime" format="dd/MM/yyyy" [width]="350"></dxi-column>
       <dxi-column dataField="soma" caption="R$ Recebido" dataType="number" format="currency"></dxi-column>
       <dxi-column dataField="valor_em_porc" caption="% Recebido" dataType="number"></dxi-column>
       <dxi-column dataField="ticketMedio" caption="R$ Ticket médio" dataType="currency"></dxi-column>
       <dxi-column dataField="tickets" caption="# tickets" dataType="number"></dxi-column>
       <dxi-column dataField="tickets_em_porc" caption="% tickets" dataType="number"></dxi-column>
 
-      <dxo-summary>
-        <dxi-total-item column="groupby" dataType="datetime" format="dd/mm/yyyy" summaryType="count">
+      <dxo-summary [calculateCustomSummary]="calculateSummary">
+        <dxi-total-item showInColumn="groupby" summaryType="custom" name="customSummary1" displayFormat="Itens: {0}">
         </dxi-total-item>
         <dxi-total-item column="soma" summaryType="sum" valueFormat="currency">
         </dxi-total-item>

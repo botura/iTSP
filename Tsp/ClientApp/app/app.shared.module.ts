@@ -1,3 +1,5 @@
+import { ItauCarteiraAtualUfComponent } from './components/itau/carteiraatual/carteiraatual.uf.component';
+import { ItauCarteiraAtualComponent } from './components/itau/carteiraatual/carteiraatual.component';
 import {
     DxButtonModule,
     DxChartModule,
@@ -5,7 +7,9 @@ import {
     DxDateBoxModule,
     DxFileUploaderModule,
     DxLoadPanelModule,
+    DxPivotGridModule,
     DxTabPanelModule,
+    DxTagBoxModule,
     DxToolbarModule,
 } from 'devextreme-angular';
 import { NgModule } from '@angular/core';
@@ -26,6 +30,9 @@ import { RecAssUfComponent } from './components/recass/recassuf.component';
 import { RecAssDataPagtoComponent } from './components/recass/recassdatapagto.component';
 import { ImportComponent } from './components/import/import.component';
 import { ImportRecAssComponent } from './components/import/import.recass.component';
+import { ItauCarteiraAtualEntidadeComponent } from './components/itau/carteiraatual/carteiraatual.entidade.component';
+import { ItauCarteiraAtualGridComponent } from './components/itau/carteiraatual/carteiraatual.grid.component';
+import { ItauCarteiraAtualPivotComponent } from './components/itau/carteiraatual/carteiraatual.pivot.component';
 
 @NgModule({
     declarations: [
@@ -41,6 +48,11 @@ import { ImportRecAssComponent } from './components/import/import.recass.compone
         RecAssDataPagtoComponent,
         ImportComponent,
         ImportRecAssComponent,
+        ItauCarteiraAtualComponent,
+        ItauCarteiraAtualUfComponent,
+        ItauCarteiraAtualEntidadeComponent,
+        ItauCarteiraAtualGridComponent,
+        ItauCarteiraAtualPivotComponent,
     ],
     imports: [
         CommonModule,
@@ -54,6 +66,8 @@ import { ImportRecAssComponent } from './components/import/import.recass.compone
         DxButtonModule,
         DxToolbarModule,
         DxLoadPanelModule,
+        DxTagBoxModule,
+        DxPivotGridModule,
         RouterModule.forRoot([
             { path: '', redirectTo: 'home', pathMatch: 'full' },
             { path: 'home', component: HomeComponent },
@@ -61,6 +75,7 @@ import { ImportRecAssComponent } from './components/import/import.recass.compone
             { path: 'fetch-data', component: FetchDataComponent },
             { path: 'rec-ass', component: RecAssComponent },
             { path: 'importar', component: ImportComponent },
+            { path: 'itau-carteiraatual', component: ItauCarteiraAtualComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ]

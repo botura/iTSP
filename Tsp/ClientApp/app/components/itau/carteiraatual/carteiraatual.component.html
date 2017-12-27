@@ -1,0 +1,29 @@
+<h1>Relatório: Itaú - Carteira atual</h1>
+<dx-toolbar>
+    <dxi-item location="before" locateInMenu="never">
+        <div class='toolbar-label'>Carteira do dia </div>
+    </dxi-item>
+    <dxi-item location="before">
+        <dx-tag-box [items]="carteiras" [(value)]="carteiraSelecionada" [searchEnabled]="true"> </dx-tag-box>
+    </dxi-item>
+    <dxi-item location="before">
+        <dx-button type="default" text="Filtrar" (onClick)="btFiltrar()"></dx-button>
+    </dxi-item>
+</dx-toolbar>
+
+<p></p>
+
+<dx-tab-panel #tab [selectedIndex]="0">
+    <dxi-item class="tabpanel-item" title="Agrupado por estado" icon="chart">
+        <itau-carteiraatual-uf [filtro]="filtro"></itau-carteiraatual-uf>
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="Agrupado por entidade" icon="chart">
+        <itau-carteiraatual-entidade [filtro]="filtro"></itau-carteiraatual-entidade>
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="Grid" icon="chart">
+        <itau-carteiraatual-grid [filtro]="filtro"></itau-carteiraatual-grid>
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="Pivot" icon="chart">
+        <itau-carteiraatual-pivot [filtro]="filtro"></itau-carteiraatual-pivot>
+    </dxi-item>
+</dx-tab-panel>
