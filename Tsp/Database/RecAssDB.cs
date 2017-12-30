@@ -13,11 +13,11 @@ namespace Tsp.Database
     public class RecAssDB
     {
         // GetGrid
-        public static IEnumerable<MdRecAss> GetGrid()
+        public static IEnumerable<MdRecAss> GetGrid(string dataInicial, string dataFinal)
         {
             var list = new List<MdRecAss>();
             MySqlConnection con = new MySqlConnection(_Global.ConnectionString);
-            string sql = "SELECT * FROM rec_ass";
+            string sql = $"SELECT * FROM rec_ass WHERE data_pagamento >= '{ dataInicial }' AND data_pagamento <= '{ dataFinal }'";
 
             try
             {

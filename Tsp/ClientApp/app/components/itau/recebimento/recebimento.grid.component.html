@@ -1,0 +1,37 @@
+<p></p>
+<div>
+    <dx-data-grid *ngIf="queryResult" id="gridContainer" [dataSource]="queryResult" [rowAlternationEnabled]="true">
+        <dxo-export [enabled]="true" fileName="rec_ass - Grid"></dxo-export>
+        <dxo-load-panel [enabled]="true"></dxo-load-panel>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-sorting mode="multiple"></dxo-sorting>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-group-panel [visible]="true"></dxo-group-panel>
+        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+
+        <!-- <dxi-column dataField="uf_resid" caption="UF" [groupIndex]="0" [width]="100"></dxi-column> -->
+        <dxi-column dataField="uf_resid" caption="UF" [width]="100"></dxi-column>
+        <dxi-column dataField="cpf" caption="CPF" [width]="150"></dxi-column>
+        <dxi-column dataField="contrato" caption="Contrato" [width]="150"></dxi-column>
+        <dxi-column dataField="produto" caption="Produto" [width]="500"></dxi-column>
+        <dxi-column dataField="data_pagamento" caption="Dt pagto" dataType="datetime" format="dd/MM/yyyy" [width]="150"></dxi-column>
+        <dxi-column dataField="atraso" caption="Atraso" [width]="100"></dxi-column>
+        <dxi-column dataField="tabela" caption="Tabela" [width]="100"></dxi-column>
+        <dxi-column dataField="valor_pago" caption="R$ pago" dataType="number" [width]="150"></dxi-column>
+
+        <dxo-summary>
+            <dxi-group-item column="produto" summaryType="count" displayFormat="{0} itens">
+            </dxi-group-item>
+            <dxi-group-item column="valor_pago" summaryType="sum" valueFormat="currency" [showInGroupFooter]="false" [alignByColumn]="true">
+            </dxi-group-item>
+
+            <dxi-total-item column="cpf" summaryType="count">
+            </dxi-total-item>
+            <dxi-total-item column="valor_pago" summaryType="sum" valueFormat="currency">
+            </dxi-total-item>
+
+        </dxo-summary>
+
+    </dx-data-grid>
+</div>

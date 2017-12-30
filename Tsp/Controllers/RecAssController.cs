@@ -25,10 +25,10 @@ namespace Tsp.Controllers
 
         // Grid
         [HttpGet("grid")]
-        public IEnumerable<MdRecAss> GetRecAssGrid()
+        public IEnumerable<MdRecAss> GetRecAssGrid(string dataInicial, string dataFinal)
         {
             DateTime start = DateTime.Now;
-            IEnumerable<MdRecAss> result = RecAssDB.GetGrid();
+            IEnumerable<MdRecAss> result = RecAssDB.GetGrid(dataInicial, dataFinal);
             Console.WriteLine("----------");
             Console.WriteLine("/api/rec_ass/grid");
             Console.WriteLine("Executado em: " + (DateTime.Now - start));

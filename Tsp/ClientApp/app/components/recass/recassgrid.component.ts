@@ -26,12 +26,22 @@ export class RecAssGridComponent implements OnChanges {
         console.log('Inicio api/recass/grid:');
         this.queryResult = null;
 
-        this.http.get(this.baseUrl + 'api/rec_ass/grid').subscribe(result => {
+        this.http.get(this.baseUrl + 'api/rec_ass/grid'+ '?' + this.toQueryString(this.filtro)).subscribe(result => {
             this.queryResult = result.json();
             console.log('Fim api/recass/grid');
         }, error => console.error(error));
     }
 
+    toQueryString(obj: any) {
+        var parts = [];
+        for (var property in obj) {
+            var value = obj[property];
+            if (value != null && value != undefined)
+                parts.push(encodeURIComponent(property) + '=' + encodeURIComponent(value));
+        }
+        return parts.join('&');
+    }
+    
     onContentReady(e: any) {
         e.component.option('loadPanel.enabled', false);
     }

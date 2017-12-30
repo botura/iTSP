@@ -1,3 +1,4 @@
+import { CurrencyPipe } from '@angular/common/src/pipes/number_pipe';
 import { ItauCarteiraAtualUfComponent } from './components/itau/carteiraatual/carteiraatual.uf.component';
 import { ItauCarteiraAtualComponent } from './components/itau/carteiraatual/carteiraatual.component';
 import {
@@ -33,6 +34,9 @@ import { ImportRecAssComponent } from './components/import/import.recass.compone
 import { ItauCarteiraAtualEntidadeComponent } from './components/itau/carteiraatual/carteiraatual.entidade.component';
 import { ItauCarteiraAtualGridComponent } from './components/itau/carteiraatual/carteiraatual.grid.component';
 import { ItauCarteiraAtualPivotComponent } from './components/itau/carteiraatual/carteiraatual.pivot.component';
+import { ItauRecebimentoComponent } from './components/itau/recebimento/recebimento.component';
+import { ItauRecebimentoGridComponent } from './components/itau/recebimento/recebimento.grid.component';
+import { ItauRecebimentoPivotComponent } from './components/itau/recebimento/recebimento.pivot.component';
 
 @NgModule({
     declarations: [
@@ -53,6 +57,9 @@ import { ItauCarteiraAtualPivotComponent } from './components/itau/carteiraatual
         ItauCarteiraAtualEntidadeComponent,
         ItauCarteiraAtualGridComponent,
         ItauCarteiraAtualPivotComponent,
+        ItauRecebimentoComponent,
+        ItauRecebimentoGridComponent,
+        ItauRecebimentoPivotComponent,
     ],
     imports: [
         CommonModule,
@@ -76,9 +83,10 @@ import { ItauCarteiraAtualPivotComponent } from './components/itau/carteiraatual
             { path: 'rec-ass', component: RecAssComponent },
             { path: 'importar', component: ImportComponent },
             { path: 'itau-carteiraatual', component: ItauCarteiraAtualComponent },
+            { path: 'itau-recebimento', component: ItauRecebimentoComponent },
             { path: '**', redirectTo: 'home' }
         ])
-    ]
+    ],
 })
 export class AppModuleShared {
 }
