@@ -106,9 +106,9 @@ namespace Tsp.Database.Itau
         {
             var list = new List<MdCarteiraAtual>();
             MySqlConnection con = new MySqlConnection(_Global.ConnectionString);
-            string sql = $"SELECT UF_Resid, CIDADE_Resid, Produto_Recup, Atraso, Parcela, PrincipalTotal, Situacao_Descricao," +
-                         $" Acordo, Entidade, Falecido, Orgao, SubOrgao, Data_ultimo_desconto, Data_ultimo_pagamento," +
-                         $" Plano_parcelas, ValorParcelas_Vencido, ValorParcela, Data_Inicio_Contrato" +
+            string sql = $"SELECT UF_Resid, Produto_Recup, Atraso, Parcela, PrincipalTotal, Situacao_Descricao," +
+                         $" Acordo, Entidade, Falecido, Orgao, SubOrgao," +
+                         $" Plano_parcelas, ValorParcela" +
                          $" FROM itsp.carteira_atual" +
                          $" WHERE Data_Arquivo = '{ dataArquivo }'";
             try
@@ -120,7 +120,6 @@ namespace Tsp.Database.Itau
                 {
                     var ca = new MdCarteiraAtual();
                     ca.UF_Resid = MbGet.Str(reader["UF_Resid"]);
-                    ca.CIDADE_Resid = MbGet.Str(reader["CIDADE_Resid"]);
                     ca.Produto_Recup = MbGet.Str(reader["Produto_Recup"]);
                     ca.Atraso = MbGet.Int(reader["Atraso"]);
                     ca.Parcela = MbGet.Int(reader["Parcela"]);
@@ -131,12 +130,8 @@ namespace Tsp.Database.Itau
                     ca.Falecido = MbGet.Str(reader["Falecido"]);
                     ca.Orgao = MbGet.Str(reader["Orgao"]);
                     ca.SubOrgao = MbGet.Str(reader["SubOrgao"]);
-                    ca.Data_ultimo_desconto = MbGet.Date(reader["Data_ultimo_desconto"]).GetValueOrDefault().ToString("yyyy/MM/dd");
-                    ca.Data_ultimo_pagamento = MbGet.Date(reader["Data_ultimo_pagamento"]).GetValueOrDefault().ToString("yyyy/MM/dd");
                     ca.Plano_parcelas = MbGet.Int(reader["Plano_parcelas"]);
-                    ca.ValorParcelas_Vencido = MbGet.Dec(reader["ValorParcelas_Vencido"]);
                     ca.ValorParcela = MbGet.Dec(reader["ValorParcela"]);
-                    ca.Data_Inicio_Contrato = MbGet.Date(reader["Data_Inicio_Contrato"]).GetValueOrDefault().ToString("yyyy/MM/dd");
                     list.Add(ca);
                 }
             }

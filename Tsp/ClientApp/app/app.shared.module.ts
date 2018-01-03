@@ -37,6 +37,9 @@ import { ItauCarteiraAtualPivotComponent } from './components/itau/carteiraatual
 import { ItauRecebimentoComponent } from './components/itau/recebimento/recebimento.component';
 import { ItauRecebimentoGridComponent } from './components/itau/recebimento/recebimento.grid.component';
 import { ItauRecebimentoPivotComponent } from './components/itau/recebimento/recebimento.pivot.component';
+import { ItauRecebimentoUfComponent } from './components/itau/recebimento/recebimento.uf.component';
+import { ItauRecebimentoProdutoComponent } from './components/itau/recebimento/recebimento.produto.component';
+import { ItauRecebimentoDataComponent } from './components/itau/recebimento/recebimento.data.component';
 
 @NgModule({
     declarations: [
@@ -60,6 +63,9 @@ import { ItauRecebimentoPivotComponent } from './components/itau/recebimento/rec
         ItauRecebimentoComponent,
         ItauRecebimentoGridComponent,
         ItauRecebimentoPivotComponent,
+        ItauRecebimentoUfComponent,
+        ItauRecebimentoProdutoComponent,
+        ItauRecebimentoDataComponent,
     ],
     imports: [
         CommonModule,

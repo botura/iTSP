@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnChanges } from '@angular/core';
 import { Http } from '@angular/http';
 import { DxDataGridModule } from 'devextreme-angular';
+import notify from 'devextreme/ui/notify';
 
 @Component({
     selector: 'itau-carteiraatual-pivot',
@@ -12,6 +13,7 @@ export class ItauCarteiraAtualPivotComponent implements OnChanges {
     private baseUrl: string;
     private http: Http;
     public queryResult: any = [];
+    public searching = false;
 
     constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
         this.http = http;
@@ -26,12 +28,19 @@ export class ItauCarteiraAtualPivotComponent implements OnChanges {
 
     populate() {
         console.log('Inicio api/itau/carteiraatualgrid');
+        this.searching = true;
         this.queryResult = null;
 
         this.http.get(this.baseUrl + 'api/itau/carteiraatualgrid' + '?' + this.toQueryString(this.filtro)).subscribe(result => {
             this.queryResult = result.json();
+            this.searching = false;
             console.log('Fim api/itau/carteiraatualgrid');
-        }, error => console.error(error));
+            notify("Dados atualizados", "success", 3000);
+        }, error => {
+            console.error(error);
+            this.searching = false;
+            notify("Erro ao acessar o banco de dados", "error", 3000);
+        });
     }
 
     toQueryString(obj: any) {

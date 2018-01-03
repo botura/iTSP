@@ -20,6 +20,15 @@
 <p></p>
 
 <dx-tab-panel #tab [selectedIndex]="0">
+    <dxi-item class="tabpanel-item" title="Agrupado por data de pagamento" icon="chart">
+        <itau-recebimento-data [queryResult]="queryResultDataPagamento"></itau-recebimento-data>
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="Agrupado por estado" icon="chart">
+        <itau-recebimento-uf [queryResult]="queryResultUf"></itau-recebimento-uf>
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="Agrupado por produto" icon="chart">
+        <itau-recebimento-produto [queryResult]="queryResultProduto"></itau-recebimento-produto>
+    </dxi-item>
     <dxi-item class="tabpanel-item" title="Grid" icon="chart">
         <itau-recebimento-grid [queryResult]="queryResult"></itau-recebimento-grid>
     </dxi-item>
@@ -27,3 +36,7 @@
         <itau-recebimento-pivot [queryResult]="queryResult"></itau-recebimento-pivot>
     </dxi-item>
 </dx-tab-panel>
+
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)"  [(visible)]="searching" [showIndicator]="true"
+    [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">
+</dx-load-panel>

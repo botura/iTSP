@@ -1,6 +1,7 @@
 import { Component, Inject, Input, OnChanges } from '@angular/core';
 import { Http } from '@angular/http';
 import { DxPieChartModule } from 'devextreme-angular';
+import notify from 'devextreme/ui/notify';
 
 @Component({
     selector: 'itau-carteiraatual-entidade',
@@ -12,6 +13,7 @@ export class ItauCarteiraAtualEntidadeComponent implements OnChanges {
     private baseUrl: string;
     private http: Http;
     public queryResult: any = [];
+    public searching = false;
 
     constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
         this.http = http;
@@ -26,12 +28,19 @@ export class ItauCarteiraAtualEntidadeComponent implements OnChanges {
 
     populate() {
         console.log('Inicio api/itau/carteiraatualentidade');
+        this.searching = true;
         this.queryResult = null;
 
         this.http.get(this.baseUrl + 'api/itau/carteiraatualentidade' + '?' + this.toQueryString(this.filtro)).subscribe(result => {
             this.queryResult = result.json();
+            this.searching = false;
             console.log('Fim api/itau/carteiraatualentidade');
-        }, error => console.error(error));
+            notify("Dados atualizados", "success", 3000);
+        }, error => {
+            console.error(error);
+            this.searching = false;
+            notify("Erro ao acessar o banco de dados", "error", 3000);
+        });
     }
 
     toQueryString(obj: any) {

@@ -59,7 +59,7 @@ namespace Tsp.Controllers
             return result;
         }
 
-        // Grafico Somatoria por produto
+        // Grafico Somatoria por data pagamento
         [HttpGet("somatoriaDataPagamento")]
         public IEnumerable<MdGrafico> GetRecAssSomatoriaDataPagto(string dataInicial, string dataFinal)
         {

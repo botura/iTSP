@@ -41,5 +41,107 @@ namespace Tsp.Database.Itau
             }
             return list;
         }
+
+
+        // GetSomatoriaUf
+        public static IEnumerable<MdGrafico> GetSomatoriaUf(string dataInicial, string dataFinal)
+        {
+            var list = new List<MdGrafico>();
+            MySqlConnection con = new MySqlConnection(_Global.ConnectionString);
+            string sql = $"CALL `Itau.RejMis.estatistica_poruf`('{dataInicial}', '{dataFinal}')";
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                con.Open();
+                MySqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (reader.Read())
+                {
+                    var grafico = new MdGrafico();
+                    grafico.groupby = (string)reader["uf_resid"];
+                    grafico.soma = MbGet.Dec(reader["soma"]);
+                    grafico.valor_em_porc = MbGet.Dec(reader["valor_em_porc"]);
+                    grafico.tickets = MbGet.Int(reader["tickets"]);
+                    grafico.tickets_em_porc = MbGet.Dec(reader["tickets_em_porc"]);
+                    grafico.ticketMedio = MbGet.Dec(reader["ticketMedio"]);
+                    grafico.totalRegistros = MbGet.Int(reader["totalRegistros"]);
+                    grafico.totalValor = MbGet.Dec(reader["totalValor"]);
+                    list.Add(grafico);
+                }
+            }
+            catch (MySqlException)
+            {
+                throw;
+            }
+            return list;
+        }
+
+
+        // GetSomatoriaProduto
+        public static IEnumerable<MdGrafico> GetSomatoriaProduto(string dataInicial, string dataFinal)
+        {
+            var list = new List<MdGrafico>();
+            MySqlConnection con = new MySqlConnection(_Global.ConnectionString);
+            string sql = $"CALL `Itau.RejMis.estatistica_porproduto`('{dataInicial}', '{dataFinal}')";
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                con.Open();
+                MySqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (reader.Read())
+                {
+                    var grafico = new MdGrafico();
+                    grafico.groupby = (string)reader["produto"];
+                    grafico.soma = MbGet.Dec(reader["soma"]);
+                    grafico.valor_em_porc = MbGet.Dec(reader["valor_em_porc"]);
+                    grafico.tickets = MbGet.Int(reader["tickets"]);
+                    grafico.tickets_em_porc = MbGet.Dec(reader["tickets_em_porc"]);
+                    grafico.ticketMedio = MbGet.Dec(reader["ticketMedio"]);
+                    grafico.totalRegistros = MbGet.Int(reader["totalRegistros"]);
+                    grafico.totalValor = MbGet.Dec(reader["totalValor"]);
+                    list.Add(grafico);
+                }
+            }
+            catch (MySqlException)
+            {
+                throw;
+            }
+            return list;
+        }
+
+
+        // GetSomatoriaDataPagto
+        public static IEnumerable<MdGrafico> GetSomatoriaDataPagto(string dataInicial, string dataFinal)
+        {
+            var list = new List<MdGrafico>();
+            MySqlConnection con = new MySqlConnection(_Global.ConnectionString);
+            string sql = $"CALL `Itau.RejMis.estatistica_pordatapagamento`('{dataInicial}', '{dataFinal}')";
+
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand(sql, con);
+                con.Open();
+                MySqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);
+                while (reader.Read())
+                {
+                    var grafico = new MdGrafico();
+                    grafico.groupby = grafico.groupby = MbGet.Date(reader["data_pagamento"]).GetValueOrDefault().ToString("yyyy/MM/dd");
+                    grafico.soma = MbGet.Dec(reader["soma"]);
+                    grafico.valor_em_porc = MbGet.Dec(reader["valor_em_porc"]);
+                    grafico.tickets = MbGet.Int(reader["tickets"]);
+                    grafico.tickets_em_porc = MbGet.Dec(reader["tickets_em_porc"]);
+                    grafico.ticketMedio = MbGet.Dec(reader["ticketMedio"]);
+                    grafico.totalRegistros = MbGet.Int(reader["totalRegistros"]);
+                    grafico.totalValor = MbGet.Dec(reader["totalValor"]);
+                    list.Add(grafico);
+                }
+            }
+            catch (MySqlException)
+            {
+                throw;
+            }
+            return list;
+        }
     }
 }

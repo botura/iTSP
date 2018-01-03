@@ -1,7 +1,7 @@
-<dx-pivot-grid
-  [allowSortingBySummary]="true"
-  [allowSorting]="true"
-  [allowFiltering]="true"
-  [showBorders]="true"
-  [dataSource]="queryResult">
-  <dxo-field-chooser [enabled]="true"></dxo-field-chooser></dx-pivot-grid>
+  <dx-pivot-grid [allowSortingBySummary]="true" [allowSorting]="true" [allowFiltering]="true" [showBorders]="true" [dataSource]="queryResult">
+    <dxo-field-chooser [enabled]="true"></dxo-field-chooser>
+  </dx-pivot-grid>
+
+<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)" [(visible)]="searching" [showIndicator]="true"
+  [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">
+</dx-load-panel>

@@ -1,15 +1,5 @@
-<dx-chart [dataSource]="queryResult">
-  <dxi-series argumentField="groupby" valueField="soma" name="Por estado" type="bar">
-  </dxi-series>
-  <dxo-common-series-settings>
-    <dxo-label [visible]="true" [format]="{ type: 'fixedPoint', precision: '0' }">
-    </dxo-label>
-  </dxo-common-series-settings>
-  <dxo-export [enabled]="true"></dxo-export>
-</dx-chart>
-
 <dx-data-grid [dataSource]="queryResult" [rowAlternationEnabled]="true">
-    <dxo-export [enabled]="true" fileName="carteira_atual - Por estado"></dxo-export>
+    <dxo-export [enabled]="true" fileName="Recebimento - Por produto"></dxo-export>
   <dxo-load-panel [enabled]="true"></dxo-load-panel>
   <dxo-scrolling mode="virtual"></dxo-scrolling>
   <dxo-sorting mode="multiple"></dxo-sorting>
@@ -17,9 +7,9 @@
   <dxo-filter-row [visible]="true"></dxo-filter-row>
   <dxo-header-filter [visible]="true"></dxo-header-filter>
 
-  <dxi-column dataField="groupby" caption="Estado" [width]="350"></dxi-column>
-  <dxi-column dataField="soma" caption="R$" dataType="number" format="currency"></dxi-column>
-  <dxi-column dataField="valor_em_porc" caption="%" dataType="number"></dxi-column>
+  <dxi-column dataField="groupby" caption="Produto" [width]="500"></dxi-column>
+  <dxi-column dataField="soma" caption="R$ Recebido" dataType="number" format="currency"></dxi-column>
+  <dxi-column dataField="valor_em_porc" caption="% Recebido" dataType="number"></dxi-column>
   <dxi-column dataField="ticketMedio" caption="R$ Ticket médio" dataType="currency"></dxi-column>
   <dxi-column dataField="tickets" caption="# tickets" dataType="number"></dxi-column>
   <dxi-column dataField="tickets_em_porc" caption="% tickets" dataType="number"></dxi-column>
@@ -37,7 +27,3 @@
   </dxo-summary>
 
 </dx-data-grid>
-
-<dx-load-panel #loadPanel shadingColor="rgba(0,0,0,0.4)"  [(visible)]="searching" [showIndicator]="true"
-    [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">
-</dx-load-panel>
