@@ -1,0 +1,36 @@
+<p></p>
+<div>
+    <dx-data-grid *ngIf="queryResult" id="gridContainer" [dataSource]="queryResult" [rowAlternationEnabled]="true">
+        <dxo-export [enabled]="true" fileName="rec_ass - Grid"></dxo-export>
+        <dxo-load-panel [enabled]="true"></dxo-load-panel>
+        <dxo-scrolling mode="virtual"></dxo-scrolling>
+        <dxo-sorting mode="multiple"></dxo-sorting>
+        <dxo-filter-row [visible]="true"></dxo-filter-row>
+        <dxo-header-filter [visible]="true"></dxo-header-filter>
+        <dxo-group-panel [visible]="true"></dxo-group-panel>
+        <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+
+        <!-- <dxi-column dataField="uf_resid" caption="UF" [groupIndex]="0" [width]="100"></dxi-column> -->
+        <dxi-column dataField="uf" caption="UF" [width]="100"></dxi-column>
+        <dxi-column dataField="contrato" caption="Contrato" [width]="150"></dxi-column>
+        <dxi-column dataField="nome_loja" caption="Loja" [width]="150"></dxi-column>
+        <dxi-column dataField="nome_empresa" caption="Empresa" [width]="300"></dxi-column>
+        <dxi-column dataField="valor_financiado" caption="R$ financiado" dataType="number" [width]="150"></dxi-column>
+        <dxi-column dataField="valor_prestacao" caption="R$ prestação" dataType="number" [width]="150"></dxi-column>
+        <dxi-column dataField="risco" caption="R$ risco" dataType="number" [width]="150"></dxi-column>
+
+        <dxo-summary>
+            <dxi-group-item column="contrato" summaryType="count" displayFormat="{0} itens">
+            </dxi-group-item>
+            <dxi-group-item column="risco" summaryType="sum" valueFormat="currency" [showInGroupFooter]="false" [alignByColumn]="true">
+            </dxi-group-item>
+
+            <dxi-total-item column="contrato" summaryType="count">
+            </dxi-total-item>
+            <dxi-total-item column="risco" summaryType="sum" valueFormat="currency">
+            </dxi-total-item>
+
+        </dxo-summary>
+
+    </dx-data-grid>
+</div>

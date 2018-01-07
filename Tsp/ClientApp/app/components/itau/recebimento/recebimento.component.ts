@@ -3,15 +3,15 @@ import { Component, Inject, ViewChild } from '@angular/core';
 import { Http } from '@angular/http';
 import { OnInit } from '@angular/core/src/metadata/lifecycle_hooks';
 import notify from 'devextreme/ui/notify';
+import { ItauService } from './itau.service';
 
 @Component({
     selector: 'itau-recebimento',
     templateUrl: './recebimento.component.html',
+    providers: [ItauService]
 })
 
 export class ItauRecebimentoComponent implements OnInit {
-    private baseUrl: string;
-    private http: Http;
     public queryResult: any = [];
     public queryResultUf: any = [];
     public queryResultProduto: any = [];
@@ -24,9 +24,7 @@ export class ItauRecebimentoComponent implements OnInit {
         dataFinal: '',
     }
 
-    constructor(http: Http, @Inject('BASE_URL') baseUrl: string) {
-        this.http = http;
-        this.baseUrl = baseUrl;
+    constructor(private http: Http, @Inject('BASE_URL') private baseUrl: string, private itauService: ItauService) {
         this.dataDe.setMonth(this.dataDe.getMonth() - 1);
     }
 
@@ -44,66 +42,24 @@ export class ItauRecebimentoComponent implements OnInit {
     }
 
     populate() {
-        console.log('Inicio api/itau/recebimento/grid:');
         this.searching = true;
-        this.queryResult = null;
         this.queryResultDataPagamento = null;
-        this.queryResultUf = null;
         this.queryResultProduto = null;
         this.queryResultUf = null;
+        this.queryResult = null;
 
-        this.http.get(this.baseUrl + 'api/itau/recebimento/somatoriaDataPagamento' + '?' + this.toQueryString(this.filtro)).subscribe(result => {
-            this.queryResultDataPagamento = result.json();
-            this.searching = false;
-            console.log('Fim api/itau/recebimento/somatoriaDataPagamento');
-            notify("Dados atualizados", "success", 1000);
-        }, error => {
-            console.error(error);
-            this.searching = false;
-            notify("Erro ao acessar o banco de dados", "error", 1000);
-        });
-        
-        this.http.get(this.baseUrl + 'api/itau/recebimento/somatoriaUf' + '?' + this.toQueryString(this.filtro)).subscribe(result => {
-            this.queryResultUf = result.json();
-            this.searching = false;
-            console.log('Fim api/itau/recebimento/somatoriaUf');
-            notify("Dados atualizados", "success", 1000);
-        }, error => {
-            console.error(error);
-            this.searching = false;
-            notify("Erro ao acessar o banco de dados", "error", 1000);
-        });
-        
-        this.http.get(this.baseUrl + 'api/itau/recebimento/somatoriaProduto' + '?' + this.toQueryString(this.filtro)).subscribe(result => {
-            this.queryResultProduto = result.json();
-            this.searching = false;
-            console.log('Fim api/itau/recebimento/somatoriaProduto');
-            notify("Dados atualizados", "success", 1000);
-        }, error => {
-            console.error(error);
-            this.searching = false;
-            notify("Erro ao acessar o banco de dados", "error", 1000);
-        });
+        this.itauService.GetSomatoriaDataPagamento(this.filtro)
+            .subscribe(result => this.queryResultDataPagamento = result);
 
-        this.http.get(this.baseUrl + 'api/itau/recebimento/grid' + '?' + this.toQueryString(this.filtro)).subscribe(result => {
-            this.queryResult = result.json();
-            this.searching = false;
-            console.log('Fim api/itau/recebimento/grid');
-            notify("Dados atualizados", "success", 1000);
-        }, error => {
-            console.error(error);
-            this.searching = false;
-            notify("Erro ao acessar o banco de dados", "error", 1000);
-        });
-    }
+        this.itauService.GetSomatoriaProduto(this.filtro)
+            .subscribe(result => this.queryResultProduto = result);
 
-    toQueryString(obj: any) {
-        var parts = [];
-        for (var property in obj) {
-            var value = obj[property];
-            if (value != null && value != undefined)
-                parts.push(encodeURIComponent(property) + '=' + encodeURIComponent(value));
-        }
-        return parts.join('&');
+        this.itauService.GetSomatoriaUf(this.filtro)
+            .subscribe(result => this.queryResultUf = result);
+
+        this.itauService.GetGrid(this.filtro)
+            .subscribe(result => this.queryResult = result);
+
+        this.searching = false;
     }
 }

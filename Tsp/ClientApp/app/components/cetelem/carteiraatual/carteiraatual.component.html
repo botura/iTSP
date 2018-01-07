@@ -1,0 +1,16 @@
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)"  [(visible)]="searching" [showIndicator]="true"
+    [showPane]="true" [shading]="true" [closeOnOutsideClick]="false">
+</dx-load-panel>
+
+<h1>Cetelem - Carteira</h1>
+<dx-tab-panel #tab [selectedIndex]="0">
+    <dxi-item class="tabpanel-item" title="Agrupado por estado" icon="chart">
+        <cetelem-recebimento-uf [queryResult]="queryResultUf"></cetelem-recebimento-uf>
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="Grid" icon="chart">
+        <cetelem-recebimento-grid [queryResult]="queryResult"></cetelem-recebimento-grid>
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="Pivot" icon="chart">
+        <cetelem-recebimento-pivot [queryResult]="queryResult"></cetelem-recebimento-pivot>
+    </dxi-item>
+</dx-tab-panel>

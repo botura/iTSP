@@ -1,3 +1,7 @@
+import { CetelemRecebimentoPivotComponent } from './components/cetelem/carteiraatual/recebimento.pivot.component';
+import { CetelemRecebimentoGridComponent } from './components/cetelem/carteiraatual/recebimento.grid.component';
+import { CetelemRecebimentoUfComponent } from './components/cetelem/carteiraatual/recebimento.uf.component';
+import { CetelemCarteiraAtualComponent } from './components/cetelem/carteiraatual/carteiraatual.component';
 import { CurrencyPipe } from '@angular/common/src/pipes/number_pipe';
 import { ItauCarteiraAtualUfComponent } from './components/itau/carteiraatual/carteiraatual.uf.component';
 import { ItauCarteiraAtualComponent } from './components/itau/carteiraatual/carteiraatual.component';
@@ -66,6 +70,10 @@ import { ItauRecebimentoDataComponent } from './components/itau/recebimento/rece
         ItauRecebimentoUfComponent,
         ItauRecebimentoProdutoComponent,
         ItauRecebimentoDataComponent,
+        CetelemCarteiraAtualComponent,
+        CetelemRecebimentoUfComponent,
+        CetelemRecebimentoGridComponent,
+        CetelemRecebimentoPivotComponent,
     ],
     imports: [
         CommonModule,
@@ -90,6 +98,7 @@ import { ItauRecebimentoDataComponent } from './components/itau/recebimento/rece
             { path: 'importar', component: ImportComponent },
             { path: 'itau-carteiraatual', component: ItauCarteiraAtualComponent },
             { path: 'itau-recebimento', component: ItauRecebimentoComponent },
+            { path: 'cetelem-carteiraatual', component: CetelemCarteiraAtualComponent },
             { path: '**', redirectTo: 'home' }
         ])
     ],
