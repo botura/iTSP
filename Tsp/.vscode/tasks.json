@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/Tsp.csproj"
+                "${workspaceFolder}/tsp.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

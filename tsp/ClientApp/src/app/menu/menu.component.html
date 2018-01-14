@@ -1,0 +1,19 @@
+<div class='mb-menu'>
+
+  <button mat-button color="default" (click)="onHomeClick()">
+    <mat-icon>home</mat-icon>
+  </button>
+
+  <button mat-button [matMenuTriggerFor]="menuItau">Itaú</button>
+  <mat-menu #menuItau="matMenu" [overlapTrigger]="false">
+    <button mat-menu-item (click)="onItauCarteiraClick()">Carteira</button>
+    <button mat-menu-item (click)="onItauRecAssRejMisClick()">RecAss & RejMis</button>
+  </mat-menu>
+
+  <button mat-button [matMenuTriggerFor]="menuCetelem">Cetelem</button>
+  <mat-menu #menuCetelem="matMenu" [overlapTrigger]="false">
+    <button mat-menu-item (click)="onCetelemCarteiraClick()">Carteira</button>
+  </mat-menu>
+
+</div>
+<p></p>

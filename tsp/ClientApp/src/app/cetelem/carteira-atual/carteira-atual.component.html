@@ -1,0 +1,17 @@
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)"  [(visible)]="searching" [showIndicator]="true"
+[showPane]="true" [shading]="false" [closeOnOutsideClick]="true">
+</dx-load-panel>
+
+<h4>Carteira do Cetelem</h4>
+
+<dx-tab-panel #tab [selectedIndex]="0" *ngIf="!searching">
+  <dxi-item class="tabpanel-item" title="Agrupado por estado" icon="chart">
+      <app-carteira-atual-uf [queryResult]="queryResultUf"></app-carteira-atual-uf>
+  </dxi-item>
+  <dxi-item class="tabpanel-item" title="Grid" icon="chart">
+      <app-carteira-atual-grid [queryResult]="queryResult"></app-carteira-atual-grid>
+  </dxi-item>
+  <dxi-item class="tabpanel-item" title="Pivot" icon="chart">
+      <app-carteira-atual-pivot [queryResult]="queryResult"></app-carteira-atual-pivot>
+  </dxi-item>
+</dx-tab-panel>
