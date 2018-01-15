@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Data;
 using MySql.Data.MySqlClient;
@@ -135,7 +136,7 @@ namespace Tsp.Database.Itau
                     list.Add(ca);
                 }
             }
-            catch (MySqlException)
+            catch (MySqlException ex)
             {
                 throw;
             }

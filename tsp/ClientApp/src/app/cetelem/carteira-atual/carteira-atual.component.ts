@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { Http } from '@angular/http';
 
-import { CetelemService } from '../cetelem.service';
+import { CarteiraAtualService } from './carteira-atual.service';
 
 @Component({
   selector: 'app-carteira-atual',
@@ -14,7 +14,7 @@ export class CarteiraAtualComponent implements OnInit {
   public queryResultUf: any = [];
   public searching = false;
 
-  constructor(private dbService: CetelemService) {
+  constructor(private dbService: CarteiraAtualService) {
   }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class CarteiraAtualComponent implements OnInit {
         // notify("Dados atualizados", "success", 3000);
         this.searching = false;
       })
-      .subscribe(result => this.queryResult = result)
+      .subscribe(result => this.queryResult = result);
   }
 
 }

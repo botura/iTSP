@@ -16,11 +16,12 @@ locale(navigator.language);
 
 import { MatButtonModule, MatCheckboxModule, MatMenuModule, MatIconModule } from '@angular/material';
 
+import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 import { HomeComponent } from './home/home.component';
 import { MenuComponent } from './menu/menu.component';
 import { CetelemModule } from './cetelem/cetelem.module';
-import { AppRoutingModule } from './app.routing.module';
+import { ItauModule } from './itau/itau.module';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { AppRoutingModule } from './app.routing.module';
     MatMenuModule,
     MatIconModule,
     CetelemModule,
-    AppRoutingModule
+    ItauModule,
+    AppRoutingModule,
   ],
   providers: [
     {
@@ -46,7 +48,7 @@ import { AppRoutingModule } from './app.routing.module';
       useValue: 'pt'
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 
 export class AppModule { }

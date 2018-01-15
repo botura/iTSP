@@ -1,0 +1,39 @@
+<dx-load-panel shadingColor="rgba(0,0,0,0.4)" [(visible)]="searching" [showIndicator]="true" [showPane]="true" [shading]="false"
+    [closeOnOutsideClick]="true">
+</dx-load-panel>
+
+<h4>Recebimento do Itaú</h4>
+
+<dx-toolbar>
+  <dxi-item location="before" locateInMenu="never">
+      <div class='toolbar-label'>De </div>
+  </dxi-item>
+  <dxi-item location="before">
+      <dx-date-box [(value)]="dataDe" displayFormat="dd/MM/yyyy"></dx-date-box>
+  </dxi-item>
+  <dxi-item location="before" locateInMenu="never">
+      <div class='toolbar-label'>até</div>
+  </dxi-item>
+  <dxi-item location="before">
+      <dx-date-box [(value)]="dataAte" displayFormat="dd/MM/yyyy"></dx-date-box>
+  </dxi-item>
+  <dxi-item location="before">
+      <dx-button type="default" text="Filtrar" (onClick)="btFiltrar()"></dx-button>
+  </dxi-item>
+</dx-toolbar>
+<br>
+
+<dx-tab-panel #tab [selectedIndex]="0">
+    <dxi-item class="tabpanel-item" title="Agrupado por data" icon="chart">
+        <app-recebimento-data></app-recebimento-data>
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="Agrupado por estado" icon="chart">
+        <app-recebimento-uf></app-recebimento-uf>
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="Grid" icon="chart">
+        <app-recebimento-grid></app-recebimento-grid>
+    </dxi-item>
+    <dxi-item class="tabpanel-item" title="Pivot" icon="chart">
+        <app-recebimento-pivot></app-recebimento-pivot>
+    </dxi-item>
+</dx-tab-panel>

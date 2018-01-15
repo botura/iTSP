@@ -19,11 +19,11 @@ export class MenuComponent implements OnInit {
   }
 
   onItauCarteiraClick() {
-    this.router.navigateByUrl('/pagina1');
+    this.router.navigateByUrl('/itau-carteira-atual');
   }
 
   onItauRecAssRejMisClick() {
-    this.router.navigateByUrl('/pagina2');
+    this.router.navigateByUrl('/itau-recebimento');
   }
 
   onCetelemCarteiraClick() {

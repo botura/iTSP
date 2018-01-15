@@ -7,7 +7,7 @@ import 'rxjs/add/operator/finally';
 import 'rxjs/add/observable/throw';
 
 @Injectable()
-export class CetelemService {
+export class CarteiraAtualService {
     private URL = 'api/cetelem/carteira';
     constructor (private http: Http) {
     }
