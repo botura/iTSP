@@ -136,7 +136,7 @@ namespace Tsp.Database.Itau
                     list.Add(ca);
                 }
             }
-            catch (MySqlException ex)
+            catch (MySqlException)
             {
                 throw;
             }
