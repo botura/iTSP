@@ -25,15 +25,15 @@
 
 <dx-tab-panel #tab [selectedIndex]="0">
     <dxi-item class="tabpanel-item" title="Agrupado por data" icon="chart">
-        <app-recebimento-data></app-recebimento-data>
+        <app-recebimento-data [queryResult]="queryResultDataPagamento"></app-recebimento-data>
     </dxi-item>
     <dxi-item class="tabpanel-item" title="Agrupado por estado" icon="chart">
-        <app-recebimento-uf></app-recebimento-uf>
+        <app-recebimento-uf [queryResult]="queryResultUf"></app-recebimento-uf>
     </dxi-item>
     <dxi-item class="tabpanel-item" title="Grid" icon="chart">
-        <app-recebimento-grid></app-recebimento-grid>
+        <app-recebimento-grid [queryResult]="queryResult"></app-recebimento-grid>
     </dxi-item>
     <dxi-item class="tabpanel-item" title="Pivot" icon="chart">
-        <app-recebimento-pivot></app-recebimento-pivot>
+        <app-recebimento-pivot [queryResult]="queryResult"></app-recebimento-pivot>
     </dxi-item>
 </dx-tab-panel>

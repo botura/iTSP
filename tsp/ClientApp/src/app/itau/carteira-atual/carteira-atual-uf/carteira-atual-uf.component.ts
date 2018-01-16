@@ -9,7 +9,7 @@ import { Component, OnInit, Input } from '@angular/core';
 export class CarteiraAtualUfComponent implements OnInit {
   @Input() queryResult: any;
 
-  constructor() { 
+  constructor() {
   }
 
   ngOnInit() {

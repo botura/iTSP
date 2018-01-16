@@ -1,3 +1,15 @@
-<p>
-  recebimento-pivot works!
-</p>
+<div id="pivotgrid-demo">
+  <dx-chart id="sales-chart">
+      <dxo-common-series-settings type="bar"></dxo-common-series-settings>
+      <dxo-adaptive-layout ></dxo-adaptive-layout>
+      <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeTooltip"></dxo-tooltip>
+  </dx-chart>
+<p></p>
+  <dx-pivot-grid id="pivotgrid" [allowSortingBySummary]="true" [allowFiltering]="true" [showBorders]="true" [allowSortingBySummary]="true"
+      [showColumnGrandTotals]="true" [showRowGrandTotals]="true" [showRowTotals]="true" [showColumnTotals]="true" [dataSource]="pivotGridDataSource"
+      [allowExpandAll]="true" [showBorders]="true">
+      <dxo-field-chooser [enabled]="true"></dxo-field-chooser>
+      <dxo-scrolling mode="virtual"></dxo-scrolling>
+      <dxo-export [enabled]="true" fileName="Recebimento"></dxo-export>
+  </dx-pivot-grid>
+</div>

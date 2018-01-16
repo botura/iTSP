@@ -1,3 +1,53 @@
-<p>
-  recebimento-data works!
-</p>
+<div>
+  <div>
+    <dx-chart palette="violet" [dataSource]="queryResult" title="Por data de pagamento" scrollingMode="all" zoomingMode="all">
+      <dxi-series valueField="soma" name="Recebido"></dxi-series>
+      <dxo-common-series-settings #seriesSettings argumentField="groupby" type="spline">
+      </dxo-common-series-settings>
+      <dxo-margin [bottom]="20"></dxo-margin>
+      <dxo-common-axis-settings>
+        <dxo-grid [visible]="true"></dxo-grid>
+      </dxo-common-axis-settings>
+      <dxo-legend verticalAlignment="top" horizontalAlignment="right">
+      </dxo-legend>
+      <dxo-argument-axis [allowDecimals]="false" [axisDivisionFactor]="60">
+        <dxo-label>
+          <dxo-format type="decimal"></dxo-format>
+        </dxo-label>
+      </dxo-argument-axis>
+      <dxo-export [enabled]="true"></dxo-export>
+      <dxo-scroll-bar [visible]="true"></dxo-scroll-bar>
+      <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeTooltip">
+      </dxo-tooltip>
+    </dx-chart>
+  </div>
+
+  <dx-data-grid [dataSource]="queryResult" [rowAlternationEnabled]="true" [height]="700">
+    <dxo-export [enabled]="true" fileName="Recebimento - Por data"></dxo-export>
+    <dxo-load-panel [enabled]="true"></dxo-load-panel>
+    <dxo-scrolling mode="virtual"></dxo-scrolling>
+    <dxo-sorting mode="multiple"></dxo-sorting>
+
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+
+    <dxi-column dataField="groupby" caption="Data" dataType="datetime" format="dd/MM/yyyy" [width]="350"></dxi-column>
+    <dxi-column dataField="soma" caption="R$ Risco" dataType="number" [format]="{ style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }"></dxi-column>
+    <dxi-column dataField="valor_em_porc" caption="% sobre a carteira" dataType="number" [format]="{ minimumFractionDigits: 2 }"></dxi-column>
+    <dxi-column dataField="ticketMedio" caption="R$ Ticket médio" dataType="number" [format]="{ style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }"></dxi-column>
+    <dxi-column dataField="tickets" caption="# tickets" dataType="number"></dxi-column>
+    <dxi-column dataField="tickets_em_porc" caption="% tickets" dataType="number" [format]="{ minimumFractionDigits: 2 }"></dxi-column>
+    <dxo-summary>
+      <dxi-total-item column="groupby" summaryType="count">
+      </dxi-total-item>
+      <dxi-total-item column="soma" summaryType="sum" [valueFormat]="{ style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }">
+      </dxi-total-item>
+      <dxi-total-item column="valor_em_porc" summaryType="sum" [customizeText]="customizePorc">
+      </dxi-total-item>
+      <dxi-total-item column="tickets" summaryType="sum">
+      </dxi-total-item>
+      <dxi-total-item column="tickets_em_porc" summaryType="sum" [customizeText]="customizePorc">
+      </dxi-total-item>
+    </dxo-summary>
+
+  </dx-data-grid>

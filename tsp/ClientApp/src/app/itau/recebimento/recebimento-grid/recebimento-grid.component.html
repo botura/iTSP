@@ -1,3 +1,35 @@
-<p>
-  recebimento-grid works!
-</p>
+<div>
+  <dx-data-grid id="gridContainer" [dataSource]="queryResult" [rowAlternationEnabled]="true" [height]="700">
+    <dxo-export [enabled]="true" fileName="rec_ass - Grid"></dxo-export>
+    <dxo-load-panel [enabled]="true"></dxo-load-panel>
+    <dxo-scrolling mode="virtual"></dxo-scrolling>
+    <dxo-sorting mode="multiple"></dxo-sorting>
+    <dxo-filter-row [visible]="true"></dxo-filter-row>
+    <dxo-header-filter [visible]="true"></dxo-header-filter>
+    <dxo-group-panel [visible]="true"></dxo-group-panel>
+    <dxo-grouping #expand [autoExpandAll]="false"></dxo-grouping>
+
+    <dxi-column dataField="data_pagamento" caption="Data" dataType="datetime" format="dd/MM/yyyy" [width]="150"></dxi-column>
+    <dxi-column dataField="uf_resid" caption="UF" [width]="100"></dxi-column>
+    <dxi-column dataField="tabela" caption="RejMis / RecAss" [width]="150"></dxi-column>
+    <dxi-column dataField="produto" caption="Produto" [width]="400"></dxi-column>
+    <dxi-column dataField="valor_pago" caption="R$" dataType="number" [width]="200" [format]="{ style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }"></dxi-column>
+    <dxi-column dataField="contrato" caption="Contrato" [width]="150"></dxi-column>
+    <dxi-column dataField="cpf" caption="CPF" [width]="150"></dxi-column>
+    <dxi-column dataField="atraso" caption="Atraso" [width]="150"></dxi-column>
+
+    <dxo-summary>
+      <dxi-group-item column="contrato" summaryType="count" displayFormat="{0} itens">
+      </dxi-group-item>
+      <dxi-group-item column="valor_pago" summaryType="sum" [showInGroupFooter]="false" [alignByColumn]="true" [valueFormat]="{ style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }">
+      </dxi-group-item>
+
+      <dxi-total-item column="contrato" summaryType="count">
+      </dxi-total-item>
+      <dxi-total-item column="valor_pago" summaryType="sum" [valueFormat]="{ style: 'currency', currency: 'BRL', minimumFractionDigits: 2 }">
+      </dxi-total-item>
+
+    </dxo-summary>
+
+  </dx-data-grid>
+</div>
